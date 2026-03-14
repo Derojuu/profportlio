@@ -7,10 +7,35 @@ const inter = Inter({
   subsets: ["latin"],
 });
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://derojuu.github.io";
+
 export const metadata: Metadata = {
-  title: "Prof. Akintola Shehu Latunji | Professor of Fisheries, LASU",
-  description: "Official academic portfolio of Prof. Akintola Shehu Latunji - Professor of Fisheries Faculty of Science, Lagos State University.",
-  keywords: ["Akintola Shehu Latunji", "Professor of Fisheries", "Lagos State University", "LASU", "Fisheries Research Nigeria", "Aquaculture", "Food Security"],
+  metadataBase: new URL(siteUrl),
+  title: "Prof. Kabiru Olusegun Akinyemi | Professor of Microbiology, LASU",
+  description:
+    "Official academic portfolio of Prof. Kabiru Olusegun Akinyemi — Professor of Microbiology, Infectious & Zoonotic Diseases; Director of Linkages, Partnerships & Collaborations, Lagos State University.",
+  keywords: [
+    "Kabiru Akinyemi",
+    "Professor of Microbiology",
+    "Lagos State University",
+    "LASU",
+    "Molecular Epidemiology",
+    "Infectious Diseases",
+    "Zoonotic Diseases",
+  ],
+  openGraph: {
+    type: "website",
+    title: "Prof. Kabiru Olusegun Akinyemi | Academic Portfolio",
+    description:
+      "Professor of Microbiology, LASU. Director of Linkages & Partnerships. Research in molecular epidemiology and infectious diseases.",
+    images: [{ url: "/profpic.jpeg", width: 1200, height: 630, alt: "Prof. Kabiru Olusegun Akinyemi" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Prof. Kabiru Olusegun Akinyemi | Academic Portfolio",
+    description: "Professor of Microbiology, LASU. Director of Linkages & Partnerships.",
+    images: ["/profpic.jpeg"],
+  },
 };
 
 import { Navbar } from "@/components/layout/Navbar";

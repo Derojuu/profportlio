@@ -45,22 +45,22 @@ export function PublicationCard({ publication, index = 0 }: PublicationCardProps
         <div className="space-y-5">
           <div className="flex flex-wrap gap-2">
             {publication.tags?.map((tag, i) => (
-              <span key={i} className="text-[10px] font-black uppercase tracking-[0.2em] text-brand-gold bg-brand-gold/10 px-3 py-1 rounded-full">
+              <span key={i} className="text-[10px] font-black tracking-wide text-brand-gold bg-brand-gold/10 px-3 py-1 rounded-full">
                 {tag}
               </span>
             ))}
           </div>
-          <h4 className="text-2xl font-black text-brand-navy dark:text-white leading-tight group-hover:text-brand-gold transition-colors pr-10 uppercase tracking-tighter">
+          <h4 className="text-2xl font-black text-brand-navy dark:text-white leading-tight group-hover:text-brand-gold transition-colors pr-10 tracking-tight">
             {publication.title}
           </h4>
           <p className="text-base font-bold text-slate-500 dark:text-slate-400">
             {publication.authors}
           </p>
           <div className="flex items-center gap-4 pt-2">
-            <span className="text-[11px] font-black text-brand-gold uppercase tracking-[0.2em] border border-brand-gold/20 px-4 py-1.5 rounded-full">
+            <span className="text-[11px] font-black text-brand-gold tracking-wide border border-brand-gold/20 px-4 py-1.5 rounded-full">
               {publication.year}
             </span>
-            <span className="text-[11px] font-black text-slate-400 uppercase tracking-[0.1em] italic">{publication.journal}</span>
+            <span className="text-[11px] font-black text-slate-400 tracking-wide italic">{publication.journal}</span>
           </div>
         </div>
       </div>

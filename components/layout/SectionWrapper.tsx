@@ -15,7 +15,7 @@ export function SectionWrapper({ children, className, id, ...props }: SectionWra
       variants={staggerContainer}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, amount: 0.15 }}
+      viewport={{ once: true, amount: 0.08 }}
       className={cn("py-16 md:py-24", className)}
       {...props}
     >

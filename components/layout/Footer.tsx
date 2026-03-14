@@ -28,7 +28,7 @@ export function Footer() {
                 href={profileData.contact.links.googleScholar}
                 target="_blank"
                 rel="noreferrer"
-                className="text-xs font-bold uppercase tracking-widest text-slate-400 hover:text-bio-teal transition-colors"
+                className="text-xs font-bold tracking-wide text-slate-400 hover:text-bio-teal transition-colors"
               >
                 Google Scholar
               </a>
@@ -36,7 +36,7 @@ export function Footer() {
                 href={profileData.contact.links.orcid}
                 target="_blank"
                 rel="noreferrer"
-                className="text-xs font-bold uppercase tracking-widest text-slate-400 hover:text-bio-teal transition-colors"
+                className="text-xs font-bold tracking-wide text-slate-400 hover:text-bio-teal transition-colors"
               >
                 ORCID
               </a>
@@ -45,7 +45,7 @@ export function Footer() {
 
           {/* Quick Links */}
           <div className="md:col-span-4">
-            <h4 className="text-xs font-bold tracking-widest text-white uppercase mb-6">
+            <h4 className="text-xs font-bold tracking-wide text-white mb-6">
               Quick Links
             </h4>
             <ul className="space-y-4">
@@ -65,7 +65,7 @@ export function Footer() {
 
           {/* Contact */}
           <div className="md:col-span-3">
-            <h4 className="text-xs font-bold tracking-widest text-white uppercase mb-6">
+            <h4 className="text-xs font-bold tracking-wide text-white mb-6">
               Contact
             </h4>
             <ul className="space-y-4">

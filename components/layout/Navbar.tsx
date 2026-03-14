@@ -61,10 +61,10 @@ export function Navbar() {
                <span className="text-brand-navy font-black text-xl leading-none">A</span>
             </div>
             <div className="flex flex-col">
-              <span className="text-lg md:text-xl font-black tracking-tighter text-brand-navy dark:text-white uppercase leading-none">
-                Akinyemi <span className="text-brand-gold">KO</span>
+              <span className="text-lg md:text-xl font-black tracking-tight text-brand-navy dark:text-white leading-none">
+                Prof. <span className="text-brand-gold">Akinyemi</span>
               </span>
-              <span className="text-[8px] md:text-[9px] text-gray-500 dark:text-gray-400 font-bold uppercase tracking-[0.3em] mt-1">
+              <span className="text-[8px] md:text-[9px] text-gray-500 dark:text-gray-400 font-bold tracking-wide mt-1">
                 Academic Portfolio &apos;26
               </span>
             </div>
@@ -77,7 +77,7 @@ export function Navbar() {
                 key={link.name}
                 href={link.href}
                 className={cn(
-                  "text-[10px] font-black uppercase tracking-[0.2em] transition-all duration-300 hover:text-brand-gold relative group py-2",
+                  "text-[10px] font-black tracking-wide transition-all duration-300 hover:text-brand-gold relative group py-2",
                   pathname === link.href 
                     ? "text-brand-gold" 
                     : "text-brand-navy dark:text-slate-300"
@@ -94,7 +94,7 @@ export function Navbar() {
               href="#contact"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-8 py-3 rounded-2xl text-[10px] font-black uppercase tracking-[0.2em] bg-brand-navy text-white dark:bg-brand-gold dark:text-brand-navy hover:shadow-gold-glow-sm transition-all duration-300"
+              className="px-8 py-3 rounded-2xl text-[10px] font-black tracking-wide bg-brand-navy text-white dark:bg-brand-gold dark:text-brand-navy hover:shadow-gold-glow-sm transition-all duration-300"
             >
               Collaborate
             </motion.a>
@@ -123,14 +123,14 @@ export function Navbar() {
             animate={{ y: 0 }}
             exit={{ y: "-100%" }}
             transition={{ duration: 0.85, ease: [0.76, 0, 0.24, 1] }}
-            className="fixed inset-0 z-[205] bg-[#020617] text-white flex flex-col p-10 md:p-20 overflow-hidden"
+            className="fixed inset-0 z-[205] bg-[#020617] text-white flex flex-col p-6 sm:p-10 md:p-20 overflow-y-auto"
           >
             {/* Background elements for the menu */}
             <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-brand-gold/10 blur-[150px] rounded-full pointer-events-none -translate-y-1/2 translate-x-1/2"></div>
             <div className="absolute bottom-0 left-0 w-96 h-96 bg-brand-navy blur-[100px] rounded-full pointer-events-none"></div>
             
-            <div className="flex-1 flex flex-col justify-center max-w-4xl mx-auto w-full relative z-10">
-              <nav className="space-y-6 md:space-y-8">
+            <div className="flex-1 flex flex-col justify-center min-h-0 max-w-4xl mx-auto w-full relative z-10 py-8">
+              <nav className="space-y-4 sm:space-y-6 md:space-y-8">
                 {navLinks.map((link, idx) => (
                   <motion.div
                     key={link.name}
@@ -141,10 +141,10 @@ export function Navbar() {
                     <Link
                       href={link.href}
                       onClick={() => setMobileMenuOpen(false)}
-                      className="group flex items-end gap-6"
+                      className="group flex items-end gap-3 sm:gap-6 py-2 active:opacity-80"
                     >
-                      <span className="text-[10px] font-black text-brand-gold/40 group-hover:text-brand-gold mb-2 md:mb-4 transition-colors">0{idx + 1}</span>
-                      <span className="text-5xl md:text-8xl font-black uppercase tracking-tighter leading-none group-hover:text-brand-gold transition-all duration-500 block">
+                      <span className="text-[10px] font-black text-brand-gold/40 group-hover:text-brand-gold mb-1 sm:mb-2 md:mb-4 transition-colors shrink-0">0{idx + 1}</span>
+                      <span className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-black tracking-tight leading-tight group-hover:text-brand-gold transition-all duration-500 block break-words">
                         {link.name}
                       </span>
                     </Link>
@@ -156,24 +156,24 @@ export function Navbar() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.8 }}
-                className="mt-20 md:mt-32 border-t border-white/10 pt-10 flex flex-col md:flex-row gap-10 md:items-center justify-between"
+                className="mt-12 sm:mt-20 md:mt-32 border-t border-white/10 pt-8 sm:pt-10 flex flex-col md:flex-row gap-6 sm:gap-10 md:items-center justify-between"
               >
-                <div className="flex gap-8">
-                  <a href={profileData.contact.links.googleScholar} className="text-[10px] font-black uppercase tracking-widest hover:text-brand-gold transition-colors flex items-center gap-2">
-                    <BookOpen01Icon size={14} className="text-brand-gold" /> Google Scholar
+                <div className="flex flex-wrap gap-4 sm:gap-8">
+                  <a href={profileData.contact.links.googleScholar} target="_blank" rel="noopener noreferrer" className="text-[10px] font-black tracking-wide hover:text-brand-gold transition-colors flex items-center gap-2">
+                    <BookOpen01Icon size={14} className="text-brand-gold shrink-0" /> Google Scholar
                   </a>
-                  <a href={profileData.contact.links.orcid} className="text-[10px] font-black uppercase tracking-widest hover:text-brand-gold transition-colors flex items-center gap-2">
-                    <GlobalIcon size={14} className="text-brand-gold" /> ORCID
+                  <a href={profileData.contact.links.orcid} target="_blank" rel="noopener noreferrer" className="text-[10px] font-black tracking-wide hover:text-brand-gold transition-colors flex items-center gap-2">
+                    <GlobalIcon size={14} className="text-brand-gold shrink-0" /> ORCID
                   </a>
                 </div>
-                <p className="text-[10px] text-slate-500 font-bold uppercase tracking-[0.3em]">
+                <p className="text-[9px] sm:text-[10px] text-slate-500 font-bold tracking-wide">
                   Developed for <span className="text-white">LASU Linkages & Partnerships</span>
                 </p>
               </motion.div>
             </div>
 
             {/* Huge watermarked text */}
-            <div className="absolute bottom-[-5%] left-[-5%] text-[25vw] font-black text-white/[0.02] tracking-tighter leading-none pointer-events-none uppercase italic">
+            <div className="absolute bottom-[-5%] left-[-5%] text-[20vw] sm:text-[25vw] font-black text-white/[0.02] tracking-tight leading-none pointer-events-none italic">
               Academic
             </div>
           </motion.div>

@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
 
 interface ElementProps {
   delay: number;
@@ -65,35 +64,34 @@ const MolecularLink = ({ delay, duration, size, initialX, initialY }: ElementPro
 );
 
 export function MicroBackground() {
-  const [elements, setElements] = useState<React.ReactElement[]>([]);
+  const seeded = (seed: number) => {
+    const x = Math.sin(seed) * 10000;
+    return x - Math.floor(x);
+  };
 
-  useEffect(() => {
-    const cells = Array.from({ length: 15 }).map((_, i) => (
-      <FloatingCell
-        key={`cell-${i}`}
-        delay={i * 2}
-        duration={20 + i * 5}
-        size={20 + Math.random() * 60}
-        initialX={`${Math.random() * 100}%`}
-        initialY={`${Math.random() * 100}%`}
-        color={i % 2 === 0 ? "#eaaf0822" : "#0ea5e911"}
-      />
-    ));
+  const cells = Array.from({ length: 15 }).map((_, i) => (
+    <FloatingCell
+      key={`cell-${i}`}
+      delay={i * 2}
+      duration={20 + i * 5}
+      size={20 + seeded(i + 1) * 60}
+      initialX={`${seeded(i + 11) * 100}%`}
+      initialY={`${seeded(i + 21) * 100}%`}
+      color={i % 2 === 0 ? "#eaaf0822" : "#0ea5e911"}
+    />
+  ));
 
-    const links = Array.from({ length: 8 }).map((_, i) => (
-      <MolecularLink
-        key={`link-${i}`}
-        delay={i * 3}
-        duration={30 + i * 10}
-        size={100 + Math.random() * 100}
-        initialX={`${Math.random() * 100}%`}
-        initialY={`${Math.random() * 100}%`}
-        color=""
-      />
-    ));
-
-    setElements([...cells, ...links]);
-  }, []);
+  const links = Array.from({ length: 8 }).map((_, i) => (
+    <MolecularLink
+      key={`link-${i}`}
+      delay={i * 3}
+      duration={30 + i * 10}
+      size={100 + seeded(i + 31) * 100}
+      initialX={`${seeded(i + 41) * 100}%`}
+      initialY={`${seeded(i + 51) * 100}%`}
+      color=""
+    />
+  ));
 
   return (
     <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none select-none">
@@ -101,7 +99,8 @@ export function MicroBackground() {
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(234,179,8,0.02)_0%,transparent_50%)]" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(14,165,233,0.03)_0%,transparent_40%)]" />
       
-      {elements}
+      {cells}
+      {links}
 
       {/* Persistent floating DNA-like curves */}
       <svg className="absolute inset-0 w-full h-full opacity-[0.03]" xmlns="http://www.w3.org/2000/svg">

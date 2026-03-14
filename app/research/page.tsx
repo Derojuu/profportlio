@@ -31,7 +31,7 @@ export default function ResearchPage() {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              className="text-5xl md:text-7xl font-black text-brand-navy dark:text-white uppercase tracking-tighter mb-8"
+              className="text-5xl md:text-7xl font-black text-brand-navy dark:text-white tracking-tight mb-8"
             >
               Research <br className="hidden md:block" /> <span className="text-brand-gold">Excellence</span>
             </motion.h1>
@@ -62,7 +62,7 @@ export default function ResearchPage() {
               <div className="absolute top-0 right-0 w-96 h-96 bg-brand-gold/10 blur-[100px] rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none" />
               <div className="relative z-10 flex items-center gap-3 mb-10">
                 <FlashIcon className="w-8 h-8 text-brand-gold" />
-                <h2 className="text-3xl font-black uppercase tracking-tight">Contribution to Knowledge</h2>
+                <h2 className="text-3xl font-black tracking-tight">Contribution to Knowledge</h2>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-6 relative z-10">
                 {contributionToKnowledge.highlights.map((item, idx) => (
@@ -82,7 +82,7 @@ export default function ResearchPage() {
                 className="p-8 rounded-[40px] bg-white dark:bg-white/5 border border-slate-100 dark:border-white/5 shadow-xl"
               >
                 <div className="flex justify-between items-center mb-6">
-                  <h3 className="text-[10px] font-black text-brand-gold uppercase tracking-[0.4em]">In Progress</h3>
+                  <h3 className="text-[10px] font-black text-brand-gold tracking-wide">In Progress</h3>
                   <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
                 </div>
                 <ul className="space-y-4">
@@ -101,12 +101,12 @@ export default function ResearchPage() {
                 className="p-8 rounded-[40px] bg-white dark:bg-white/5 border border-slate-100 dark:border-white/5 shadow-xl"
               >
                 <div className="flex justify-between items-center mb-6">
-                  <h3 className="text-[10px] font-black text-brand-gold uppercase tracking-[0.4em]">Collaborations</h3>
+                  <h3 className="text-[10px] font-black text-brand-gold tracking-wide">Collaborations</h3>
                   <GlobalIcon className="w-5 h-5 text-brand-gold" />
                 </div>
                 <div className="flex items-end gap-2">
                   <span className="text-4xl font-black text-brand-navy dark:text-white">{collaborations.international.length + collaborations.local.length}</span>
-                  <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1.5">Partners</span>
+                  <span className="text-[10px] font-bold text-slate-400 tracking-wide mb-1.5">Partners</span>
                 </div>
               </motion.div>
             </div>
@@ -122,13 +122,13 @@ export default function ResearchPage() {
           >
             <div className="flex items-center gap-3 mb-8">
               <FlashIcon className="w-8 h-8 text-brand-gold" />
-              <h2 className="text-2xl font-black text-brand-navy dark:text-white uppercase tracking-tight">Laboratory Research</h2>
+              <h2 className="text-2xl font-black text-brand-navy dark:text-white tracking-tight">Laboratory Research</h2>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {laboratoryResearch.groups.map((g, i) => (
                 <div key={i} className="p-6 rounded-2xl bg-brand-navy/5 dark:bg-white/5 border border-slate-100 dark:border-white/5">
                   <h3 className="font-bold text-brand-navy dark:text-white">{g.name}</h3>
-                  <p className="text-[10px] font-black text-brand-gold uppercase tracking-widest mt-1">{g.role}</p>
+                  <p className="text-[10px] font-black text-brand-gold tracking-wide mt-1">{g.role}</p>
                   <p className="text-sm text-slate-600 dark:text-slate-400 mt-2">{g.focus}</p>
                 </div>
               ))}
@@ -144,7 +144,7 @@ export default function ResearchPage() {
               viewport={{ once: true }}
               className="p-10 rounded-[40px] bg-brand-navy/5 dark:bg-white/5 border border-slate-100 dark:border-white/5"
             >
-              <h2 className="text-[10px] font-black text-brand-gold uppercase tracking-[0.4em] mb-6">Research Completed</h2>
+              <h2 className="text-[10px] font-black text-brand-gold tracking-wide mb-6">Research Completed</h2>
               <ul className="space-y-3 text-sm text-brand-navy dark:text-slate-300">
                 {researchCompleted.map((item, i) => (
                   <li key={i} className="flex gap-3">
@@ -163,7 +163,7 @@ export default function ResearchPage() {
               >
                 <div className="flex items-center gap-3 mb-6">
                   <GlobalIcon className="w-6 h-6 text-brand-gold" />
-                  <h2 className="text-lg font-black text-brand-navy dark:text-white uppercase tracking-tight">International Collaborations</h2>
+                  <h2 className="text-lg font-black text-brand-navy dark:text-white tracking-tight">International Collaborations</h2>
                 </div>
                 <ul className="space-y-3 text-sm text-brand-navy dark:text-slate-400">
                   {collaborations.international.map((c, i) => (
@@ -180,7 +180,7 @@ export default function ResearchPage() {
               >
                 <div className="flex items-center gap-3 mb-6">
                   <UserGroupIcon className="w-6 h-6 text-brand-gold" />
-                  <h2 className="text-lg font-black text-brand-navy dark:text-white uppercase tracking-tight">Local Collaborations</h2>
+                  <h2 className="text-lg font-black text-brand-navy dark:text-white tracking-tight">Local Collaborations</h2>
                 </div>
                 <ul className="space-y-3 text-sm text-brand-navy dark:text-slate-400">
                   {collaborations.local.map((c, i) => (
@@ -195,7 +195,7 @@ export default function ResearchPage() {
           <div className="mb-16">
             <div className="flex items-center gap-3 mb-10">
               <BookOpen01Icon className="w-8 h-8 text-brand-gold" />
-              <h2 className="text-2xl font-black text-brand-navy dark:text-white uppercase tracking-tight">Convener of Training / Workshops</h2>
+              <h2 className="text-2xl font-black text-brand-navy dark:text-white tracking-tight">Convener of Training / Workshops</h2>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {convenerWorkshops.map((w, i) => (
@@ -209,7 +209,7 @@ export default function ResearchPage() {
                   className="p-8 rounded-2xl bg-brand-navy/5 dark:bg-white/5 border border-slate-100 dark:border-white/5 hover:border-brand-gold/30 transition-all"
                 >
                   <h3 className="font-bold text-brand-navy dark:text-white text-sm">{w.title}</h3>
-                  <p className="text-[10px] font-black text-brand-gold uppercase tracking-widest mt-3">{w.sponsor}</p>
+                  <p className="text-[10px] font-black text-brand-gold tracking-wide mt-3">{w.sponsor}</p>
                   <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">{w.date}</p>
                 </motion.div>
               ))}
@@ -226,13 +226,13 @@ export default function ResearchPage() {
           >
             <div className="flex items-center gap-3 mb-8">
               <BookOpen01Icon className="w-8 h-8 text-brand-gold" />
-              <h2 className="text-2xl font-black text-brand-navy dark:text-white uppercase tracking-tight">Papers Presented at Conferences</h2>
+              <h2 className="text-2xl font-black text-brand-navy dark:text-white tracking-tight">Papers Presented at Conferences</h2>
             </div>
             <ul className="space-y-4 max-h-96 overflow-y-auto pr-2">
               {papersPresentedAtConferences.map((p, i) => (
                 <li key={i} className="pb-4 border-b border-slate-100 dark:border-white/5 last:border-0">
                   <p className="font-bold text-brand-navy dark:text-white text-sm">{p.title}</p>
-                  <p className="text-[10px] text-slate-500 uppercase tracking-wider mt-1">{p.venue}, {p.year}. {p.role}</p>
+                  <p className="text-[10px] text-slate-500 tracking-wide mt-1">{p.venue}, {p.year}. {p.role}</p>
                 </li>
               ))}
             </ul>
@@ -249,7 +249,7 @@ export default function ResearchPage() {
             <div className="absolute top-0 right-0 w-64 h-64 bg-brand-gold/10 blur-[80px] rounded-full pointer-events-none" />
             <div className="relative z-10 flex items-center gap-3 mb-8">
               <GlobalIcon className="w-8 h-8 text-brand-gold" />
-              <h2 className="text-2xl font-black uppercase tracking-tight">Conferences / Seminars / Workshops Attended</h2>
+              <h2 className="text-2xl font-black tracking-tight">Conferences / Seminars / Workshops Attended</h2>
             </div>
             <ul className="space-y-2 max-h-96 overflow-y-auto pr-2 relative z-10 text-sm text-slate-300">
               {conferencesAttended.map((c, i) => (
@@ -259,9 +259,9 @@ export default function ResearchPage() {
           </motion.div>
 
           <div className="pt-12 border-t border-slate-200 dark:border-white/10 flex flex-wrap gap-8">
-            <Link href="/#publications" className="text-[10px] font-black text-brand-gold uppercase tracking-[0.3em] hover:text-brand-navy dark:hover:text-white transition-colors">Publications →</Link>
-            <Link href="/teaching" className="text-[10px] font-black text-brand-gold uppercase tracking-[0.3em] hover:text-brand-navy dark:hover:text-white transition-colors">Teaching →</Link>
-            <Link href="/about" className="text-[10px] font-black text-brand-gold uppercase tracking-[0.3em] hover:text-brand-navy dark:hover:text-white transition-colors">Full CV →</Link>
+            <Link href="/#publications" className="text-[10px] font-black text-brand-gold tracking-wide hover:text-brand-navy dark:hover:text-white transition-colors">Publications →</Link>
+            <Link href="/teaching" className="text-[10px] font-black text-brand-gold tracking-wide hover:text-brand-navy dark:hover:text-white transition-colors">Teaching →</Link>
+            <Link href="/about" className="text-[10px] font-black text-brand-gold tracking-wide hover:text-brand-navy dark:hover:text-white transition-colors">Full CV →</Link>
           </div>
         </Container>
       </section>

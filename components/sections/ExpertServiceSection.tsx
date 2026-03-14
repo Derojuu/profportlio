@@ -22,19 +22,19 @@ export default function ExpertServiceSection() {
           
           {/* Admin Experience Counter Sidebar */}
           <div className="lg:col-span-4 lg:sticky lg:top-32 h-fit">
-            <h2 className="text-5xl font-black uppercase tracking-tighter mb-10 leading-tight">
+            <h2 className="text-5xl font-black tracking-tight mb-10 leading-tight">
               Expert <br /> <span className="text-brand-gold">Leadership</span>
             </h2>
             <div className="space-y-6">
               <div className="p-8 rounded-3xl bg-white/5 border border-white/10 backdrop-blur-xl">
                  <Building01Icon className="w-8 h-8 text-brand-gold mb-4" />
                  <p className="text-4xl font-black mb-1">{adminExperience.length}</p>
-                 <p className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400">Administrative Roles</p>
+                 <p className="text-[10px] font-black tracking-wide text-slate-400">Administrative Roles</p>
               </div>
               <div className="p-8 rounded-3xl bg-white/5 border border-white/10 backdrop-blur-xl">
                  <UserGroupIcon className="w-8 h-8 text-brand-gold mb-4" />
                  <p className="text-4xl font-black mb-1">{expertService.reviewerJournals.length}</p>
-                 <p className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400">Top-tier Journals Reviewed</p>
+                 <p className="text-[10px] font-black tracking-wide text-slate-400">Top-tier Journals Reviewed</p>
               </div>
             </div>
           </div>
@@ -48,7 +48,7 @@ export default function ExpertServiceSection() {
                 <div className="w-10 h-10 rounded-xl bg-brand-gold flex items-center justify-center">
                   <Award01Icon className="w-6 h-6 text-brand-navy" />
                 </div>
-                <h3 className="text-2xl font-black uppercase tracking-tight">Editorial & Assessor Roles</h3>
+                <h3 className="text-2xl font-black tracking-tight">Editorial & Assessor Roles</h3>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {expertService.editorRoles.map((item, idx) => (
@@ -75,7 +75,7 @@ export default function ExpertServiceSection() {
 
             {/* External Examiner Roles List */}
             <div className="p-10 rounded-[50px] bg-white/5 border border-white/10 backdrop-blur-lg">
-              <h3 className="text-brand-gold font-black text-[10px] uppercase tracking-[0.5em] mb-10">External Examiner Appointments</h3>
+              <h3 className="text-brand-gold font-black text-[10px] tracking-wide mb-10">External Examiner Appointments</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6">
                 {expertService.externalExaminerUndergrad.map((item, idx) => (
                   <div key={idx} className="flex gap-4 items-start">

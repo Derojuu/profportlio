@@ -28,7 +28,7 @@ export function ResearchCard({ research, index = 0 }: ResearchCardProps) {
       <div className="w-20 h-20 bg-brand-gold/10 rounded-2xl flex items-center justify-center mb-10 group-hover:bg-brand-gold/20 transition-all duration-500 relative z-10 group-hover:rotate-6">
         <DiscoverCircleIcon size={40} className="text-brand-navy dark:text-brand-gold" />
       </div>
-      <h3 className="text-3xl font-black text-brand-navy dark:text-white mb-6 tracking-tighter uppercase leading-none">
+      <h3 className="text-3xl font-black text-brand-navy dark:text-white mb-6 tracking-tight leading-none">
         {research.title}
       </h3>
       <p className="text-slate-500 dark:text-slate-400 leading-relaxed font-medium text-lg">

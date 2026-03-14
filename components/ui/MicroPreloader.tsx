@@ -101,7 +101,7 @@ export function MicroPreloader() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5 }}
-              className="text-white text-sm font-black uppercase tracking-[0.5em] mb-4"
+              className="text-white text-sm font-black tracking-wide mb-4"
             >
               Synthesizing Bio-Data
             </motion.h2>
@@ -115,7 +115,7 @@ export function MicroPreloader() {
             <motion.p
               animate={{ opacity: [0.4, 1, 0.4] }}
               transition={{ repeat: Infinity, duration: 1.5 }}
-              className="text-brand-gold text-[9px] font-bold uppercase tracking-widest mt-6"
+              className="text-brand-gold text-[9px] font-bold tracking-wide mt-6"
             >
               Sequence Calibration in Progress...
             </motion.p>

@@ -32,13 +32,13 @@ export function Timeline({ items }: TimelineProps) {
           
           {/* Content */}
           <div className="group bg-white dark:bg-white/[0.03] p-8 rounded-3xl border border-slate-100 dark:border-white/5 hover:border-brand-gold/30 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.1)] transition-all duration-500">
-            <span className="inline-block py-1.5 px-4 rounded-full bg-brand-gold/10 text-brand-navy dark:text-brand-gold text-[10px] font-black uppercase tracking-widest mb-4">
+            <span className="inline-block py-1.5 px-4 rounded-full bg-brand-gold/10 text-brand-navy dark:text-brand-gold text-[10px] font-black tracking-wide mb-4">
               {item.period}
             </span>
-            <h4 className="text-2xl font-black text-brand-navy dark:text-white mb-2 uppercase tracking-tighter">
+            <h4 className="text-2xl font-black text-brand-navy dark:text-white mb-2 tracking-tight">
               {item.title}
             </h4>
-            <p className="text-slate-500 dark:text-slate-400 font-bold text-sm uppercase tracking-wide">
+            <p className="text-slate-500 dark:text-slate-400 font-bold text-sm tracking-wide">
               {item.organization}
             </p>
           </div>

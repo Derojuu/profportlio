@@ -21,10 +21,15 @@ export function HeroSection() {
   const y2 = useTransform(scrollYProgress, [0, 1], [0, -150]);
   const rotate = useTransform(scrollYProgress, [0, 1], [0, 45]);
 
+  const seeded = (seed: number) => {
+    const x = Math.sin(seed) * 10000;
+    return x - Math.floor(x);
+  };
+
   return (
     <section
       ref={containerRef}
-      className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-white dark:bg-[#020617] selection:bg-brand-gold selection:text-brand-navy"
+      className="relative min-h-screen flex items-center justify-center pt-24 sm:pt-28 md:pt-20 overflow-hidden bg-white dark:bg-[#020617] selection:bg-brand-gold selection:text-brand-navy"
     >
       {/* Dynamic Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -44,12 +49,12 @@ export function HeroSection() {
             initial={{ opacity: 0, scale: 0 }}
             animate={{ opacity: 0.4, scale: 1 }}
             transition={{ delay: 0.5 + i * 0.2, duration: 2, ease: "easeOut" }}
-            className="absolute rounded-full border border-brand-gold/20 dark:border-white/10"
+            className="absolute rounded-full border border-brand-gold/20 dark:border-white/10 hidden sm:block"
             style={{
-              width: Math.random() * 200 + 50,
-              height: Math.random() * 200 + 50,
-              top: `${Math.random() * 100}%`,
-              left: `${Math.random() * 100}%`,
+              width: seeded(i + 1) * 200 + 50,
+              height: seeded(i + 11) * 200 + 50,
+              top: `${seeded(i + 21) * 100}%`,
+              left: `${seeded(i + 31) * 100}%`,
             }}
           />
         ))}
@@ -105,21 +110,22 @@ export function HeroSection() {
           >
             <motion.div
               variants={organicReveal}
-              className="inline-flex items-center gap-3 px-6 py-2 rounded-full bg-brand-navy/5 dark:bg-white/5 border border-slate-100 dark:border-white/10 mb-10"
+              className="inline-flex items-center gap-3 px-4 sm:px-6 py-2 rounded-full bg-brand-navy/5 dark:bg-white/5 border border-slate-100 dark:border-white/10 mb-6 sm:mb-10"
             >
               <span className="w-1.5 h-1.5 rounded-full bg-brand-gold animate-pulse" />
-              <span className="text-[10px] font-black uppercase tracking-[0.4em] text-brand-navy dark:text-brand-gold">
+              <span className="text-[10px] font-black tracking-wide text-brand-navy dark:text-brand-gold">
                 Academic Showcase &apos;26
               </span>
             </motion.div>
 
             <motion.h1
               variants={organicReveal}
-              className="text-6xl md:text-8xl lg:text-9xl font-black tracking-tighter text-brand-navy dark:text-white leading-[0.85] mb-10 uppercase"
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl xl:text-9xl font-black tracking-tight text-brand-navy dark:text-white leading-[0.95] sm:leading-[0.9] mb-6 sm:mb-10"
             >
-              Prof. <br className="hidden md:block" />
-              <span className="text-brand-gold italic">Kabiru</span> <br />
-              Akinyemi
+              Prof.{" "}
+              <span className="text-brand-gold italic">Kabiru</span>{" "}
+              <span className="hidden sm:inline">Olusegun</span>{" "}
+              <span className="block">Akinyemi</span>
             </motion.h1>
 
             <motion.p
@@ -132,18 +138,18 @@ export function HeroSection() {
 
             <motion.div
               variants={organicReveal}
-              className="flex flex-wrap items-center justify-center lg:justify-start gap-6"
+              className="flex flex-wrap items-center justify-center lg:justify-start gap-3 sm:gap-6"
             >
               <a
                 href="#research"
-                className="group px-12 py-6 rounded-2xl bg-brand-navy text-white dark:bg-brand-gold dark:text-brand-navy font-black uppercase tracking-[0.3em] text-[10px] hover:shadow-gold-glow transition-all duration-500 flex items-center gap-4 active:scale-95"
+                className="group px-8 sm:px-12 py-4 sm:py-6 rounded-2xl bg-brand-navy text-white dark:bg-brand-gold dark:text-brand-navy font-black tracking-wide text-[11px] hover:shadow-gold-glow transition-all duration-500 flex items-center gap-4 active:scale-95"
               >
                 Scientific Lab
                 <ArrowRight01Icon size={18} className="group-hover:translate-x-1 transition-transform" />
               </a>
               <a
                 href="#publications"
-                className="group px-12 py-6 rounded-2xl bg-transparent text-brand-navy dark:text-white border border-brand-navy/10 dark:border-white/10 font-black uppercase tracking-[0.3em] text-[10px] hover:bg-brand-navy/5 dark:hover:bg-white/5 transition-all duration-500 flex items-center gap-4 active:scale-95"
+                className="group px-8 sm:px-12 py-4 sm:py-6 rounded-2xl bg-transparent text-brand-navy dark:text-white border border-brand-navy/10 dark:border-white/10 font-black tracking-wide text-[11px] hover:bg-brand-navy/5 dark:hover:bg-white/5 transition-all duration-500 flex items-center gap-4 active:scale-95"
               >
                 Journal Library
                 <ArrowRight01Icon size={18} className="group-hover:rotate-[-45deg] transition-transform" />
@@ -186,14 +192,14 @@ export function HeroSection() {
                 initial={{ opacity: 0, y: 40 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.8 }}
-                className="absolute -bottom-10 -right-4 md:-right-10 bg-white/10 backdrop-blur-3xl border border-white/20 p-8 md:p-12 rounded-[50px] shadow-2xl z-20 group hover:bg-brand-gold transition-all duration-500"
+                className="absolute -bottom-6 sm:-bottom-10 -right-2 sm:-right-4 md:-right-10 bg-white/10 backdrop-blur-3xl border border-white/20 p-6 sm:p-8 md:p-12 rounded-[40px] sm:rounded-[50px] shadow-2xl z-20 group hover:bg-brand-gold transition-all duration-500"
               >
                 <div className="flex flex-col items-end text-right">
-                  <span className="text-6xl md:text-8xl font-black text-white group-hover:text-brand-navy leading-none tracking-tighter">
+                  <span className="text-6xl md:text-8xl font-black text-white group-hover:text-brand-navy leading-none tracking-tight">
                     {publications.length}+
                   </span>
-                  <p className="text-[10px] font-black text-brand-gold group-hover:text-brand-navy/60 uppercase tracking-[0.4em] mt-3">
-                    Scientific <br /> Publications
+                  <p className="text-[10px] font-black text-brand-gold group-hover:text-brand-navy/60 tracking-wide mt-3 leading-tight">
+                    Scientific<span className="hidden sm:inline"><br /></span> Publications
                   </p>
                 </div>
               </motion.div>
@@ -207,7 +213,7 @@ export function HeroSection() {
         transition={{ duration: 2, repeat: Infinity }}
         className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 opacity-30"
       >
-        <span className="text-[8px] font-black uppercase tracking-[0.4em] rotate-180 [writing-mode:vertical-lr]">Scroll</span>
+        <span className="text-[8px] font-black tracking-wide rotate-180 [writing-mode:vertical-lr]">Scroll</span>
         <div className="w-px h-12 bg-gradient-to-b from-brand-gold to-transparent" />
       </motion.div>
     </section>
