@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
@@ -21,7 +22,12 @@ const navLinks = [
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
   const pathname = usePathname();
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -33,20 +39,31 @@ export function Navbar() {
 
   // Scroll lock when mobile menu is open
   useEffect(() => {
+    const html = document.documentElement;
+    const body = document.body;
+
     if (mobileMenuOpen) {
-      document.body.style.overflow = "hidden";
+      html.style.overflow = "hidden";
+      body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = "unset";
+      html.style.overflow = "";
+      body.style.overflow = "";
     }
+
     return () => {
-      document.body.style.overflow = "unset";
+      html.style.overflow = "";
+      body.style.overflow = "";
     };
   }, [mobileMenuOpen]);
+
+  useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [pathname]);
 
   return (
     <header
       className={cn(
-        "fixed top-0 left-0 right-0 z-[200] transition-all duration-700 ease-in-out",
+        "fixed top-0 left-0 right-0 z-[500] transition-all duration-500 ease-out",
         isScrolled 
           ? "py-4 bg-white/70 backdrop-blur-3xl border-b border-slate-200/50 dark:bg-[#020617]/70 dark:border-white/5" 
           : "py-6 bg-transparent"
@@ -56,10 +73,7 @@ export function Navbar() {
         <div className="flex items-center justify-between">
           
           {/* Brand - Refined Typography */}
-          <Link href="/" className="relative z-[210] flex items-center gap-4 group">
-            <div className="w-10 h-10 rounded-xl bg-brand-gold flex items-center justify-center shadow-gold-glow-sm group-hover:rotate-12 transition-transform duration-500">
-               <span className="text-brand-navy font-black text-xl leading-none">A</span>
-            </div>
+          <Link href="/" className="relative z-[210] flex items-center group">
             <div className="flex flex-col">
               <span className="text-lg md:text-xl font-black tracking-tight text-brand-navy dark:text-white leading-none">
                 Prof. <span className="text-brand-gold">Akinyemi</span>
@@ -102,12 +116,14 @@ export function Navbar() {
 
           {/* Mobile Menu Toggle - Glassmorphic */}
           <button
-            className="lg:hidden p-4 rounded-2xl bg-brand-navy/5 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-brand-navy dark:text-white relative z-[210] overflow-hidden"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="lg:hidden p-4 rounded-2xl bg-brand-navy/5 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-brand-navy dark:text-white relative z-[510] overflow-hidden touch-manipulation"
+            onClick={() => setMobileMenuOpen((prev) => !prev)}
+            aria-expanded={mobileMenuOpen}
+            aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
           >
             <motion.div
               animate={{ rotate: mobileMenuOpen ? 90 : 0 }}
-              transition={{ duration: 0.5, ease: [0.76, 0, 0.24, 1] }}
+              transition={{ duration: 0.25, ease: "easeOut" }}
             >
               {mobileMenuOpen ? <Cancel01Icon size={24} /> : <MenuSquareIcon size={24} />}
             </motion.div>
@@ -116,69 +132,81 @@ export function Navbar() {
       </Container>
 
       {/* Full-screen Mobile Menu — MoniePoint Style */}
-      <AnimatePresence>
-        {mobileMenuOpen && (
-          <motion.div
-            initial={{ y: "-100%" }}
-            animate={{ y: 0 }}
-            exit={{ y: "-100%" }}
-            transition={{ duration: 0.85, ease: [0.76, 0, 0.24, 1] }}
-            className="fixed inset-0 z-[205] bg-[#020617] text-white flex flex-col p-6 sm:p-10 md:p-20 overflow-y-auto"
-          >
-            {/* Background elements for the menu */}
-            <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-brand-gold/10 blur-[150px] rounded-full pointer-events-none -translate-y-1/2 translate-x-1/2"></div>
-            <div className="absolute bottom-0 left-0 w-96 h-96 bg-brand-navy blur-[100px] rounded-full pointer-events-none"></div>
-            
-            <div className="flex-1 flex flex-col justify-center min-h-0 max-w-4xl mx-auto w-full relative z-10 py-8">
-              <nav className="space-y-4 sm:space-y-6 md:space-y-8">
-                {navLinks.map((link, idx) => (
-                  <motion.div
-                    key={link.name}
-                    initial={{ opacity: 0, x: -50 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.3 + idx * 0.08, duration: 0.6, ease: "circOut" }}
-                  >
-                    <Link
-                      href={link.href}
-                      onClick={() => setMobileMenuOpen(false)}
-                      className="group flex items-end gap-3 sm:gap-6 py-2 active:opacity-80"
-                    >
-                      <span className="text-[10px] font-black text-brand-gold/40 group-hover:text-brand-gold mb-1 sm:mb-2 md:mb-4 transition-colors shrink-0">0{idx + 1}</span>
-                      <span className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-black tracking-tight leading-tight group-hover:text-brand-gold transition-all duration-500 block break-words">
-                        {link.name}
-                      </span>
-                    </Link>
-                  </motion.div>
-                ))}
-              </nav>
-
-              <motion.div 
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.8 }}
-                className="mt-12 sm:mt-20 md:mt-32 border-t border-white/10 pt-8 sm:pt-10 flex flex-col md:flex-row gap-6 sm:gap-10 md:items-center justify-between"
+      {isMounted && createPortal(
+        <AnimatePresence>
+          {mobileMenuOpen && (
+            <motion.div
+              initial={{ y: "-100%" }}
+              animate={{ y: 0 }}
+              exit={{ y: "-100%" }}
+              transition={{ duration: 0.35, ease: "easeOut" }}
+              className="fixed inset-0 z-[505] h-[100dvh] w-screen overscroll-contain bg-[#020617] text-white flex flex-col p-6 sm:p-10 md:p-20 overflow-y-auto"
+            >
+              <button
+                type="button"
+                onClick={() => setMobileMenuOpen(false)}
+                aria-label="Close navigation menu"
+                className="lg:hidden absolute top-6 right-6 sm:top-8 sm:right-8 p-3 rounded-2xl bg-white/5 border border-white/15 text-white z-20 touch-manipulation"
               >
-                <div className="flex flex-wrap gap-4 sm:gap-8">
-                  <a href={profileData.contact.links.googleScholar} target="_blank" rel="noopener noreferrer" className="text-[10px] font-black tracking-wide hover:text-brand-gold transition-colors flex items-center gap-2">
-                    <BookOpen01Icon size={14} className="text-brand-gold shrink-0" /> Google Scholar
-                  </a>
-                  <a href={profileData.contact.links.orcid} target="_blank" rel="noopener noreferrer" className="text-[10px] font-black tracking-wide hover:text-brand-gold transition-colors flex items-center gap-2">
-                    <GlobalIcon size={14} className="text-brand-gold shrink-0" /> ORCID
-                  </a>
-                </div>
-                <p className="text-[9px] sm:text-[10px] text-slate-500 font-bold tracking-wide">
-                  Developed for <span className="text-white">LASU Linkages & Partnerships</span>
-                </p>
-              </motion.div>
-            </div>
+                <Cancel01Icon size={22} />
+              </button>
 
-            {/* Huge watermarked text */}
-            <div className="absolute bottom-[-5%] left-[-5%] text-[20vw] sm:text-[25vw] font-black text-white/[0.02] tracking-tight leading-none pointer-events-none italic">
-              Academic
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+              {/* Background elements for the menu */}
+              <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-brand-gold/10 blur-[150px] rounded-full pointer-events-none -translate-y-1/2 translate-x-1/2"></div>
+              <div className="absolute bottom-0 left-0 w-96 h-96 bg-brand-navy blur-[100px] rounded-full pointer-events-none"></div>
+
+              <div className="flex-1 flex flex-col justify-center min-h-0 max-w-4xl mx-auto w-full relative z-10 py-8">
+                <nav className="space-y-4 sm:space-y-6 md:space-y-8">
+                  {navLinks.map((link, idx) => (
+                    <motion.div
+                      key={link.name}
+                      initial={{ opacity: 0, x: -50 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.06 + idx * 0.03, duration: 0.2, ease: "easeOut" }}
+                    >
+                      <Link
+                        href={link.href}
+                        onClick={() => setMobileMenuOpen(false)}
+                        className="group flex items-end gap-3 sm:gap-6 py-2 active:opacity-80"
+                      >
+                        <span className="text-[10px] font-black text-brand-gold/40 group-hover:text-brand-gold mb-1 sm:mb-2 md:mb-4 transition-colors shrink-0">0{idx + 1}</span>
+                        <span className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-black tracking-tight leading-tight group-hover:text-brand-gold transition-all duration-500 block break-words">
+                          {link.name}
+                        </span>
+                      </Link>
+                    </motion.div>
+                  ))}
+                </nav>
+
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.8 }}
+                  className="mt-12 sm:mt-20 md:mt-32 border-t border-white/10 pt-8 sm:pt-10 flex flex-col md:flex-row gap-6 sm:gap-10 md:items-center justify-between"
+                >
+                  <div className="flex flex-wrap gap-4 sm:gap-8">
+                    <a href={profileData.contact.links.googleScholar} target="_blank" rel="noopener noreferrer" className="text-[10px] font-black tracking-wide hover:text-brand-gold transition-colors flex items-center gap-2">
+                      <BookOpen01Icon size={14} className="text-brand-gold shrink-0" /> Google Scholar
+                    </a>
+                    <a href={profileData.contact.links.orcid} target="_blank" rel="noopener noreferrer" className="text-[10px] font-black tracking-wide hover:text-brand-gold transition-colors flex items-center gap-2">
+                      <GlobalIcon size={14} className="text-brand-gold shrink-0" /> ORCID
+                    </a>
+                  </div>
+                  <p className="text-[9px] sm:text-[10px] text-slate-500 font-bold tracking-wide">
+                    Developed for <span className="text-white">LASU Linkages & Partnerships</span>
+                  </p>
+                </motion.div>
+              </div>
+
+              {/* Huge watermarked text */}
+              <div className="absolute bottom-[-5%] left-[-5%] text-[20vw] sm:text-[25vw] font-black text-white/[0.02] tracking-tight leading-none pointer-events-none italic">
+                Academic
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>,
+        document.body
+      )}
     </header>
   );
 }

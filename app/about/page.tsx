@@ -74,23 +74,25 @@ export default function AboutPage() {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
-                className="p-10 rounded-[40px] bg-brand-navy dark:bg-brand-navy/60 text-white relative overflow-hidden group"
+                className="p-6 sm:p-8 md:p-10 rounded-3xl sm:rounded-[40px] bg-brand-navy dark:bg-brand-navy/60 text-white relative overflow-hidden group"
               >
                 <div className="absolute top-0 right-0 w-64 h-64 bg-brand-gold/10 blur-[80px] rounded-full pointer-events-none" />
-                <div className="relative z-10 flex items-center gap-3 mb-10">
-                  <Building01Icon className="w-8 h-8 text-brand-gold" />
-                  <h2 className="text-2xl font-black tracking-tight">Work Experience at LASU</h2>
+                <div className="relative z-10 flex flex-wrap items-center gap-3 mb-6 sm:mb-10">
+                  <Building01Icon className="w-7 h-7 sm:w-8 sm:h-8 text-brand-gold shrink-0" />
+                  <h2 className="text-xl sm:text-2xl font-black tracking-tight">Work Experience at LASU</h2>
                 </div>
-                <ul className="space-y-4 relative z-10">
+                <ul className="space-y-4 sm:space-y-5 relative z-10 min-w-0">
                   {profileData.positions.map((p, i) => (
-                    <li key={i} className="flex items-baseline gap-3">
+                    <li key={i} className="flex gap-3 min-w-0">
                       <span className="w-2 h-2 rounded-full bg-brand-gold shrink-0 mt-1.5" />
-                      <span className="font-bold">{p.title}</span>
-                      <span className="text-slate-400 text-sm">— {p.organization}, {p.period}</span>
+                      <div className="min-w-0 flex-1">
+                        <span className="font-bold block text-sm sm:text-base">{p.title}</span>
+                        <span className="text-slate-400 text-xs sm:text-sm block mt-0.5">— {p.organization}, {p.period}</span>
+                      </div>
                     </li>
                   ))}
                 </ul>
-                <p className="text-slate-400 text-xs mt-6 relative z-10">First appointment: Assistant Lecturer, Dept. of Botany & Microbiology, LASU (March 8, 1995).</p>
+                <p className="text-slate-400 text-xs mt-6 relative z-10 leading-relaxed">First appointment: Assistant Lecturer, Dept. of Botany & Microbiology, LASU (March 8, 1995).</p>
               </motion.div>
 
               {/* Honours — grid of cards like landing */}

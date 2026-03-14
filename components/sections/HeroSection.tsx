@@ -29,37 +29,8 @@ export function HeroSection() {
   return (
     <section
       ref={containerRef}
-      className="relative min-h-screen flex items-center justify-center pt-24 sm:pt-28 md:pt-20 overflow-hidden bg-white dark:bg-[#020617] selection:bg-brand-gold selection:text-brand-navy"
+      className="relative min-h-[100dvh] lg:min-h-0 lg:py-24 flex items-stretch lg:items-center justify-center pt-20 sm:pt-24 overflow-hidden bg-white dark:bg-[#020617] selection:bg-brand-gold selection:text-brand-navy"
     >
-      {/* Dynamic Background Elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <motion.div
-          style={{ y: y1 }}
-          className="absolute -top-[10%] -right-[5%] w-[60%] h-[60%] rounded-full bg-brand-gold/5 dark:bg-brand-gold/10 blur-[120px]"
-        />
-        <motion.div
-          style={{ y: y2, rotate }}
-          className="absolute top-[20%] -left-[10%] w-[50%] h-[50%] rounded-full bg-brand-navy/5 dark:bg-brand-navy/30 blur-[100px]"
-        />
-        <div className="absolute bottom-0 right-1/4 w-[40%] h-[40%] rounded-full bg-brand-gold/5 blur-[150px]" />
-
-        {[...Array(6)].map((_, i) => (
-          <motion.div
-            key={i}
-            initial={{ opacity: 0, scale: 0 }}
-            animate={{ opacity: 0.4, scale: 1 }}
-            transition={{ delay: 0.5 + i * 0.2, duration: 2, ease: "easeOut" }}
-            className="absolute rounded-full border border-brand-gold/20 dark:border-white/10 hidden sm:block"
-            style={{
-              width: seeded(i + 1) * 200 + 50,
-              height: seeded(i + 11) * 200 + 50,
-              top: `${seeded(i + 21) * 100}%`,
-              left: `${seeded(i + 31) * 100}%`,
-            }}
-          />
-        ))}
-      </div>
-
       {/* DNA Helix */}
       <div className="absolute right-[8%] top-[15%] w-48 h-[70%] opacity-[0.03] dark:opacity-[0.08] pointer-events-none hidden xl:block">
         <svg viewBox="0 0 100 600" className="w-full h-full">
@@ -97,10 +68,11 @@ export function HeroSection() {
         </svg>
       </div>
 
-      <Container className="relative z-10">
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-16 lg:gap-8">
+      <Container className="relative z-10 px-5 sm:px-6 lg:px-8 h-full lg:h-auto">
+        <div className="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-12 min-h-[calc(100dvh-5rem)] lg:min-h-0">
+          {/* Mobile: full viewport column from nav to bottom. Desktop: normal row */}
           <motion.div
-            className="flex-1 max-w-3xl text-center lg:text-left"
+            className="flex-1 w-full max-w-none lg:max-w-2xl text-left flex flex-col justify-between min-h-[calc(100dvh-5rem)] lg:min-h-0 pt-2 pb-12 lg:py-0"
             initial="hidden"
             animate="visible"
             variants={{
@@ -108,9 +80,10 @@ export function HeroSection() {
               visible: { opacity: 1, transition: { staggerChildren: 0.15, delayChildren: 0.2 } },
             }}
           >
+            {/* Top: Badge */}
             <motion.div
               variants={organicReveal}
-              className="inline-flex items-center gap-3 px-4 sm:px-6 py-2 rounded-full bg-brand-navy/5 dark:bg-white/5 border border-slate-100 dark:border-white/10 mb-6 sm:mb-10"
+              className="inline-flex items-center gap-3 px-4 sm:px-6 py-2 rounded-full bg-brand-navy/5 dark:bg-white/5 border border-slate-100 dark:border-white/10 w-max mb-6 lg:mb-8"
             >
               <span className="w-1.5 h-1.5 rounded-full bg-brand-gold animate-pulse" />
               <span className="text-[10px] font-black tracking-wide text-brand-navy dark:text-brand-gold">
@@ -118,47 +91,51 @@ export function HeroSection() {
               </span>
             </motion.div>
 
-            <motion.h1
-              variants={organicReveal}
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl xl:text-9xl font-black tracking-tight text-brand-navy dark:text-white leading-[0.95] sm:leading-[0.9] mb-6 sm:mb-10"
-            >
-              Prof.{" "}
-              <span className="text-brand-gold italic">Kabiru</span>{" "}
-              <span className="hidden sm:inline">Olusegun</span>{" "}
-              <span className="block">Akinyemi</span>
-            </motion.h1>
+            {/* Middle: Title & Subtitle */}
+            <div className="flex flex-col gap-4 lg:gap-6 my-auto lg:my-0 py-8 lg:py-0">
+              <motion.h1
+                variants={organicReveal}
+                className="text-4xl sm:text-5xl md:text-6xl lg:text-5xl xl:text-6xl font-black tracking-tight text-brand-navy dark:text-white leading-tight"
+              >
+                Prof.{" "}
+                <span className="text-brand-gold italic">Kabiru</span>{" "}
+                <span className="inline">Olusegun</span>{" "}
+                <span className="block">Akinyemi</span>
+              </motion.h1>
 
-            <motion.p
-              variants={organicReveal}
-              className="text-xl md:text-2xl text-slate-500 dark:text-slate-400 mb-12 max-w-xl mx-auto lg:mx-0 font-medium leading-relaxed tracking-tight"
-            >
-              Director of Linkages, Partnerships & Collaborations at LASU. Pioneering research in{" "}
-              <span className="text-brand-navy dark:text-white font-black">Molecular Epidemiology</span>.
-            </motion.p>
+              <motion.p
+                variants={organicReveal}
+                className="text-base sm:text-lg lg:text-lg text-slate-500 dark:text-slate-400 max-w-xl font-medium leading-relaxed tracking-tight"
+              >
+                Director of Linkages, Partnerships & Collaborations at LASU. Pioneering research in{" "}
+                <span className="text-brand-navy dark:text-white font-black">Molecular Epidemiology</span>.
+              </motion.p>
+            </div>
 
+            {/* Bottom: Buttons */}
             <motion.div
               variants={organicReveal}
-              className="flex flex-wrap items-center justify-center lg:justify-start gap-3 sm:gap-6"
+              className="flex flex-col sm:flex-row items-stretch sm:items-center justify-start gap-3 sm:gap-4 mt-auto lg:mt-8"
             >
               <a
                 href="#research"
-                className="group px-8 sm:px-12 py-4 sm:py-6 rounded-2xl bg-brand-navy text-white dark:bg-brand-gold dark:text-brand-navy font-black tracking-wide text-[11px] hover:shadow-gold-glow transition-all duration-500 flex items-center gap-4 active:scale-95"
+                className="group px-6 sm:px-8 lg:px-8 py-4 rounded-xl bg-brand-navy text-white dark:bg-brand-gold dark:text-brand-navy font-black tracking-wide text-[11px] hover:shadow-gold-glow transition-all duration-500 flex items-center justify-center sm:justify-start gap-3 active:scale-95"
               >
                 Scientific Lab
-                <ArrowRight01Icon size={18} className="group-hover:translate-x-1 transition-transform" />
+                <ArrowRight01Icon size={16} className="group-hover:translate-x-1 transition-transform" />
               </a>
               <a
                 href="#publications"
-                className="group px-8 sm:px-12 py-4 sm:py-6 rounded-2xl bg-transparent text-brand-navy dark:text-white border border-brand-navy/10 dark:border-white/10 font-black tracking-wide text-[11px] hover:bg-brand-navy/5 dark:hover:bg-white/5 transition-all duration-500 flex items-center gap-4 active:scale-95"
+                className="group px-6 sm:px-8 lg:px-8 py-4 rounded-xl bg-transparent text-brand-navy dark:text-white border border-brand-navy/10 dark:border-white/10 font-black tracking-wide text-[11px] hover:bg-brand-navy/5 dark:hover:bg-white/5 transition-all duration-500 flex items-center justify-center sm:justify-start gap-3 active:scale-95"
               >
                 Journal Library
-                <ArrowRight01Icon size={18} className="group-hover:rotate-[-45deg] transition-transform" />
+                <ArrowRight01Icon size={16} className="group-hover:rotate-[-45deg] transition-transform" />
               </a>
             </motion.div>
           </motion.div>
 
           <motion.div
-            className="flex-1 w-full max-w-sm lg:max-w-2xl relative"
+            className="flex-1 w-full max-w-[280px] sm:max-w-sm lg:max-w-xs xl:max-w-sm relative shrink-0 lg:shrink"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
@@ -211,10 +188,10 @@ export function HeroSection() {
       <motion.div
         animate={{ y: [0, 10, 0] }}
         transition={{ duration: 2, repeat: Infinity }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 opacity-30"
+        className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-30 hidden sm:flex"
       >
         <span className="text-[8px] font-black tracking-wide rotate-180 [writing-mode:vertical-lr]">Scroll</span>
-        <div className="w-px h-12 bg-gradient-to-b from-brand-gold to-transparent" />
+        <div className="w-px h-10 bg-gradient-to-b from-brand-gold to-transparent" />
       </motion.div>
     </section>
   );
