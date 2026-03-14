@@ -10,13 +10,6 @@ import { Building01Icon, UserGroupIcon, Award01Icon } from "hugeicons-react";
 export default function ExpertServiceSection() {
   return (
     <SectionWrapper id="expert-service" className="bg-brand-navy dark:bg-brand-navy/80 text-white overflow-hidden">
-      {/* Dynamic background element */}
-      <motion.div 
-        animate={{ scale: [1, 1.1, 1], opacity: [0.1, 0.15, 0.1] }}
-        transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-        className="absolute -top-1/4 -left-1/4 w-full h-full bg-brand-gold rounded-full blur-[250px] pointer-events-none"
-      ></motion.div>
-
       <Container className="relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-20">
           

@@ -1,6 +1,8 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
+import emailjs from "@emailjs/browser";
 import { profileData } from "@/data/profile";
 import { references, extraCurricular } from "@/data/research";
 import Container from "@/components/layout/Container";
@@ -9,6 +11,55 @@ import { organicReveal } from "@/components/animations/variants";
 import { HelpCircleIcon, Building01Icon, BookOpen01Icon, GraduationScrollIcon, UserCircleIcon, MicroscopeIcon, Linkedin01Icon, Chart01Icon, GlobalIcon } from "hugeicons-react";
 
 export default function ContactSection() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const [errorMsg, setErrorMsg] = useState("");
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    if (!name.trim() || !email.trim() || !message.trim()) {
+      setStatus("error");
+      setErrorMsg("Please fill in all fields.");
+      return;
+    }
+    setStatus("sending");
+    setErrorMsg("");
+
+    const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+    const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+
+    try {
+      if (serviceId && templateId && publicKey) {
+        await emailjs.send(serviceId, templateId, { from_name: name, from_email: email, message }, { publicKey });
+      } else {
+        throw new Error("EmailJS not configured");
+      }
+      setStatus("success");
+      setName("");
+      setEmail("");
+      setMessage("");
+    } catch {
+      try {
+        const res = await fetch("/api/contact", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ name: name.trim(), email: email.trim(), message: message.trim() }),
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || "Send failed");
+        setStatus("success");
+        setName("");
+        setEmail("");
+        setMessage("");
+      } catch (fallbackErr) {
+        setStatus("error");
+        setErrorMsg("Could not send message. Please try again or email directly.");
+      }
+    }
+  }
   return (
     <SectionWrapper id="contact" className="relative overflow-hidden bg-slate-50 dark:bg-transparent">
       {/* Background accents */}
@@ -97,13 +148,21 @@ export default function ContactSection() {
                  <div className="min-w-0 w-full">
                     <h3 className="text-2xl sm:text-3xl font-black text-white mb-2 tracking-tight">Drop a Message</h3>
                     <p className="text-slate-400 text-sm mb-6 sm:mb-10">I&apos;ll get back to you across my academic network.</p>
-                    <form className="space-y-4 sm:space-y-6 w-full">
+                    <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6 w-full">
+                      {status === "success" && (
+                        <p className="text-sm text-green-400 font-medium">Message sent. I&apos;ll get back to you soon.</p>
+                      )}
+                      {status === "error" && errorMsg && (
+                        <p className="text-sm text-red-400 font-medium">{errorMsg}</p>
+                      )}
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-                        <input type="text" placeholder="Name" className="w-full min-w-0 h-12 sm:h-14 bg-white/5 border border-white/10 rounded-xl sm:rounded-2xl px-4 sm:px-6 text-white focus:border-brand-gold outline-none transition-all" />
-                        <input type="email" placeholder="Email" className="w-full min-w-0 h-12 sm:h-14 bg-white/5 border border-white/10 rounded-xl sm:rounded-2xl px-4 sm:px-6 text-white focus:border-brand-gold outline-none transition-all" />
+                        <input type="text" placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} className="w-full min-w-0 h-12 sm:h-14 bg-white/5 border border-white/10 rounded-xl sm:rounded-2xl px-4 sm:px-6 text-white focus:border-brand-gold outline-none transition-all" />
+                        <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} className="w-full min-w-0 h-12 sm:h-14 bg-white/5 border border-white/10 rounded-xl sm:rounded-2xl px-4 sm:px-6 text-white focus:border-brand-gold outline-none transition-all" />
                       </div>
-                      <textarea placeholder="Message" className="w-full min-w-0 h-28 sm:h-32 bg-white/5 border border-white/10 rounded-xl sm:rounded-2xl p-4 sm:p-6 text-white focus:border-brand-gold outline-none transition-all resize-none"></textarea>
-                      <button className="w-full h-12 sm:h-14 bg-brand-gold text-brand-navy font-black tracking-wide text-xs rounded-xl sm:rounded-2xl shadow-gold-glow-sm hover:scale-[1.02] transition-all">Send Message</button>
+                      <textarea placeholder="Message" value={message} onChange={(e) => setMessage(e.target.value)} className="w-full min-w-0 h-28 sm:h-32 bg-white/5 border border-white/10 rounded-xl sm:rounded-2xl p-4 sm:p-6 text-white focus:border-brand-gold outline-none transition-all resize-none"></textarea>
+                      <button type="submit" disabled={status === "sending"} className="w-full h-12 sm:h-14 bg-brand-gold text-brand-navy font-black tracking-wide text-xs rounded-xl sm:rounded-2xl shadow-gold-glow-sm hover:scale-[1.02] transition-all disabled:opacity-70 disabled:cursor-not-allowed">
+                        {status === "sending" ? "Sending…" : "Send Message"}
+                      </button>
                     </form>
                  </div>
                  <div className="space-y-8">

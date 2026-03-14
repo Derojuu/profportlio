@@ -31,6 +31,10 @@
   animation: organic-float 15s ease-in-out infinite;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .animate-organic { animation: none; }
+}
+
 .shadow-bio-glow {
   box-shadow: 0 0 30px rgba(234, 179, 8, 0.15);
 }
