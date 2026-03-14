@@ -1,0 +1,185 @@
+"use client";
+
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { motion, AnimatePresence } from "framer-motion";
+import { MenuSquareIcon, Cancel01Icon, GlobalIcon, BookOpen01Icon } from "hugeicons-react";
+import { Container } from "./Container";
+import { cn } from "@/lib/utils";
+import { profileData } from "@/data/profile";
+
+const navLinks = [
+  { name: "About", href: "/#about", description: "Biography & Expertise" },
+  { name: "Research", href: "/#research", description: "Lab & Projects" },
+  { name: "Service", href: "/#expert-service", description: "Leadership Roles" },
+  { name: "Publications", href: "/#publications", description: "Academic Library" },
+  { name: "News", href: "/#news", description: "Latest Updates" },
+  { name: "Contact", href: "/#contact", description: "Get in Touch" }
+];
+
+export function Navbar() {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Scroll lock when mobile menu is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [mobileMenuOpen]);
+
+  return (
+    <header
+      className={cn(
+        "fixed top-0 left-0 right-0 z-[200] transition-all duration-700 ease-in-out",
+        isScrolled 
+          ? "py-4 bg-white/70 backdrop-blur-3xl border-b border-slate-200/50 dark:bg-[#020617]/70 dark:border-white/5" 
+          : "py-6 bg-transparent"
+      )}
+    >
+      <Container>
+        <div className="flex items-center justify-between">
+          
+          {/* Brand - Refined Typography */}
+          <Link href="/" className="relative z-[210] flex items-center gap-4 group">
+            <div className="w-10 h-10 rounded-xl bg-brand-gold flex items-center justify-center shadow-gold-glow-sm group-hover:rotate-12 transition-transform duration-500">
+               <span className="text-brand-navy font-black text-xl leading-none">A</span>
+            </div>
+            <div className="flex flex-col">
+              <span className="text-lg md:text-xl font-black tracking-tighter text-brand-navy dark:text-white uppercase leading-none">
+                Akinyemi <span className="text-brand-gold">KO</span>
+              </span>
+              <span className="text-[8px] md:text-[9px] text-gray-500 dark:text-gray-400 font-bold uppercase tracking-[0.3em] mt-1">
+                Academic Portfolio &apos;26
+              </span>
+            </div>
+          </Link>
+
+          {/* Desktop Nav - Clean & Elite */}
+          <nav className="hidden lg:flex items-center gap-10">
+            {navLinks.map((link) => (
+              <Link
+                key={link.name}
+                href={link.href}
+                className={cn(
+                  "text-[10px] font-black uppercase tracking-[0.2em] transition-all duration-300 hover:text-brand-gold relative group py-2",
+                  pathname === link.href 
+                    ? "text-brand-gold" 
+                    : "text-brand-navy dark:text-slate-300"
+                )}
+              >
+                {link.name}
+                <span className={cn(
+                  "absolute -bottom-1 left-0 h-[2px] bg-brand-gold transition-all duration-500 rounded-full",
+                  pathname === link.href ? "w-full" : "w-0 group-hover:w-full"
+                )}></span>
+              </Link>
+            ))}
+            <motion.a
+              href="#contact"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="px-8 py-3 rounded-2xl text-[10px] font-black uppercase tracking-[0.2em] bg-brand-navy text-white dark:bg-brand-gold dark:text-brand-navy hover:shadow-gold-glow-sm transition-all duration-300"
+            >
+              Collaborate
+            </motion.a>
+          </nav>
+
+          {/* Mobile Menu Toggle - Glassmorphic */}
+          <button
+            className="lg:hidden p-4 rounded-2xl bg-brand-navy/5 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-brand-navy dark:text-white relative z-[210] overflow-hidden"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          >
+            <motion.div
+              animate={{ rotate: mobileMenuOpen ? 90 : 0 }}
+              transition={{ duration: 0.5, ease: [0.76, 0, 0.24, 1] }}
+            >
+              {mobileMenuOpen ? <Cancel01Icon size={24} /> : <MenuSquareIcon size={24} />}
+            </motion.div>
+          </button>
+        </div>
+      </Container>
+
+      {/* Full-screen Mobile Menu — MoniePoint Style */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            initial={{ y: "-100%" }}
+            animate={{ y: 0 }}
+            exit={{ y: "-100%" }}
+            transition={{ duration: 0.85, ease: [0.76, 0, 0.24, 1] }}
+            className="fixed inset-0 z-[205] bg-[#020617] text-white flex flex-col p-10 md:p-20 overflow-hidden"
+          >
+            {/* Background elements for the menu */}
+            <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-brand-gold/10 blur-[150px] rounded-full pointer-events-none -translate-y-1/2 translate-x-1/2"></div>
+            <div className="absolute bottom-0 left-0 w-96 h-96 bg-brand-navy blur-[100px] rounded-full pointer-events-none"></div>
+            
+            <div className="flex-1 flex flex-col justify-center max-w-4xl mx-auto w-full relative z-10">
+              <nav className="space-y-6 md:space-y-8">
+                {navLinks.map((link, idx) => (
+                  <motion.div
+                    key={link.name}
+                    initial={{ opacity: 0, x: -50 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.3 + idx * 0.08, duration: 0.6, ease: "circOut" }}
+                  >
+                    <Link
+                      href={link.href}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="group flex items-end gap-6"
+                    >
+                      <span className="text-[10px] font-black text-brand-gold/40 group-hover:text-brand-gold mb-2 md:mb-4 transition-colors">0{idx + 1}</span>
+                      <span className="text-5xl md:text-8xl font-black uppercase tracking-tighter leading-none group-hover:text-brand-gold transition-all duration-500 block">
+                        {link.name}
+                      </span>
+                    </Link>
+                  </motion.div>
+                ))}
+              </nav>
+
+              <motion.div 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.8 }}
+                className="mt-20 md:mt-32 border-t border-white/10 pt-10 flex flex-col md:flex-row gap-10 md:items-center justify-between"
+              >
+                <div className="flex gap-8">
+                  <a href={profileData.contact.links.googleScholar} className="text-[10px] font-black uppercase tracking-widest hover:text-brand-gold transition-colors flex items-center gap-2">
+                    <BookOpen01Icon size={14} className="text-brand-gold" /> Google Scholar
+                  </a>
+                  <a href={profileData.contact.links.orcid} className="text-[10px] font-black uppercase tracking-widest hover:text-brand-gold transition-colors flex items-center gap-2">
+                    <GlobalIcon size={14} className="text-brand-gold" /> ORCID
+                  </a>
+                </div>
+                <p className="text-[10px] text-slate-500 font-bold uppercase tracking-[0.3em]">
+                  Developed for <span className="text-white">LASU Linkages & Partnerships</span>
+                </p>
+              </motion.div>
+            </div>
+
+            {/* Huge watermarked text */}
+            <div className="absolute bottom-[-5%] left-[-5%] text-[25vw] font-black text-white/[0.02] tracking-tighter leading-none pointer-events-none uppercase italic">
+              Academic
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </header>
+  );
+}
+
