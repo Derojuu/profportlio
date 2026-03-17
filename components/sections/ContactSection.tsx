@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { motion } from "framer-motion";
+import { useState, useRef, useEffect } from "react";
+import { motion, useInView } from "framer-motion";
 import emailjs from "@emailjs/browser";
 import { profileData } from "@/data/profile";
 import { references, extraCurricular } from "@/data/research";
@@ -16,6 +16,15 @@ export default function ContactSection() {
   const [message, setMessage] = useState("");
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
+
+  const sectionRef = useRef(null);
+  const isInView = useInView(sectionRef, { amount: 0.1 });
+
+  useEffect(() => {
+    if (!isInView && status === "success") {
+      setStatus("idle");
+    }
+  }, [isInView, status]);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -61,7 +70,7 @@ export default function ContactSection() {
     }
   }
   return (
-    <SectionWrapper id="contact" className="relative overflow-hidden bg-slate-50 dark:bg-transparent">
+    <SectionWrapper ref={sectionRef} id="contact" className="relative overflow-hidden bg-slate-50 dark:bg-transparent">
       {/* Background accents */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-brand-gold/5 blur-[200px] rounded-full pointer-events-none"></div>
       

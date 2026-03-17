@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { profileData } from "@/data/profile";
 import { honorsAndAwards } from "@/data/research";
 import Container from "@/components/layout/Container";
-import { fadeIn, staggerContainer, organicReveal } from "@/components/animations/variants";
+import { fadeIn, organicReveal } from "@/components/animations/variants";
 import { Award01Icon, School01Icon, UserGroupIcon } from "hugeicons-react";
 
 export default function AboutSection() {
@@ -19,10 +19,10 @@ export default function AboutSection() {
           {/* Left Column: Biography & Large Type */}
           <div className="lg:col-span-7">
             <motion.div variants={organicReveal} initial="hidden" whileInView="visible" viewport={{ once: true }}>
-              <h2 className="text-[10px] font-black text-brand-gold tracking-wide mb-8">Professional Biography</h2>
+              <h2 className="text-[11px] md:text-xs font-black text-brand-gold tracking-wide mb-8 uppercase">Professional Biography</h2>
               <div className="space-y-8">
                 <p className="text-3xl md:text-4xl font-black text-brand-navy dark:text-white leading-[1.1] tracking-tight">
-                  Professor of Microbiology with 25+ years of excellence in <span className="text-brand-gold">Infectious Diseases</span> and <span className="text-brand-gold">Molecular Epidemiology</span>.
+                  Professor of Microbiology with 30+ years of excellence in <span className="text-brand-gold">Infectious Diseases</span> and <span className="text-brand-gold">Molecular Epidemiology</span>.
                 </p>
                 <div className="h-1 w-24 bg-brand-gold rounded-full"></div>
                 <p className="text-lg text-slate-500 dark:text-slate-400 leading-relaxed font-medium">
@@ -48,9 +48,9 @@ export default function AboutSection() {
                     custom={idx}
                     className="p-6 rounded-2xl bg-brand-navy/5 dark:bg-white/5 border border-slate-100 dark:border-white/5 hover:border-brand-gold/30 transition-all group"
                   >
-                    <span className="text-[10px] font-black text-brand-gold tracking-wide">{award.year}</span>
-                    <h4 className="font-bold text-sm text-brand-navy dark:text-white mt-1 group-hover:text-brand-gold transition-colors">{award.title}</h4>
-                    <p className="text-[10px] text-slate-400 dark:text-slate-500 mt-1 font-bold tracking-wide">{award.organization}</p>
+                    <span className="text-[11px] md:text-xs font-black text-brand-gold tracking-wide">{award.year}</span>
+                    <h4 className="font-bold text-sm md:text-base text-brand-navy dark:text-white mt-1 group-hover:text-brand-gold transition-colors">{award.title}</h4>
+                    <p className="text-[11px] text-slate-400 dark:text-slate-500 mt-1 font-bold tracking-wide">{award.organization}</p>
                   </motion.div>
                 ))}
               </div>
@@ -86,9 +86,9 @@ export default function AboutSection() {
                     <div className="absolute left-0 top-1 w-8 h-8 rounded-full bg-white dark:bg-brand-navy border-4 border-brand-navy/5 dark:border-white/5 flex items-center justify-center group-hover:border-brand-gold transition-colors duration-500 z-10">
                       <div className="w-2 h-2 rounded-full bg-brand-gold"></div>
                     </div>
-                    <span className="text-[10px] font-black text-brand-gold tracking-wide">{edu.year}</span>
-                    <h4 className="font-bold text-base text-brand-navy dark:text-white mt-1">{edu.degree}</h4>
-                    <p className="text-xs text-slate-500 dark:text-slate-400 font-medium">{edu.institution}</p>
+                    <span className="text-[11px] md:text-xs font-black text-brand-gold tracking-wide">{edu.year}</span>
+                    <h4 className="font-bold text-base md:text-lg text-brand-navy dark:text-white mt-1">{edu.degree}</h4>
+                    <p className="text-sm text-slate-500 dark:text-slate-400 font-medium">{edu.institution}</p>
                   </motion.div>
                 ))}
               </div>
@@ -106,8 +106,8 @@ export default function AboutSection() {
                   <div key={idx} className="flex gap-4 items-start">
                     <span className="w-5 h-5 rounded-lg bg-brand-gold/10 flex items-center justify-center text-[10px] font-black text-brand-gold shrink-0 mt-1">✓</span>
                     <div>
-                      <h5 className="font-bold text-sm text-white">{m.role}</h5>
-                      <p className="text-[10px] text-slate-400 tracking-wide font-bold">{m.organization}</p>
+                      <h5 className="font-bold text-sm md:text-base text-white">{m.role}</h5>
+                      <p className="text-[11px] text-slate-400 tracking-wide font-bold">{m.organization}</p>
                     </div>
                   </div>
                 ))}

@@ -17,7 +17,7 @@ export function HeroSection() {
   return (
     <section
       ref={containerRef}
-      className="relative min-h-[100dvh] lg:min-h-0 lg:py-24 flex items-stretch lg:items-center justify-center pt-20 sm:pt-24 overflow-hidden bg-white dark:bg-[#020617] selection:bg-brand-gold selection:text-brand-navy"
+      className="relative min-h-[100dvh] lg:min-h-0 lg:py-24 flex items-stretch lg:items-center justify-center pt-32 sm:pt-24 overflow-hidden bg-white dark:bg-[#020617] selection:bg-brand-gold selection:text-brand-navy"
     >
       {/* DNA Helix */}
       <div className="absolute right-[8%] top-[15%] w-48 h-[70%] opacity-[0.03] dark:opacity-[0.08] pointer-events-none hidden xl:block">
@@ -29,6 +29,7 @@ export function HeroSection() {
                 cy={i * 40 + 20}
                 r="4"
                 fill="#EAB308"
+                initial={{ cy: i * 40 + 20 }}
                 animate={{ cx: [20, 80, 20], opacity: [0.3, 1, 0.3] }}
                 transition={{ duration: 4, repeat: Infinity, delay: i * 0.25, ease: "easeInOut" }}
               />
@@ -37,6 +38,7 @@ export function HeroSection() {
                 cy={i * 40 + 20}
                 r="4"
                 fill="#1E293B"
+                initial={{ cy: i * 40 + 20 }}
                 animate={{ cx: [80, 20, 80], opacity: [1, 0.3, 1] }}
                 transition={{ duration: 4, repeat: Infinity, delay: i * 0.25, ease: "easeInOut" }}
               />
@@ -48,6 +50,7 @@ export function HeroSection() {
                 stroke="currentColor"
                 strokeWidth="1"
                 className="text-slate-300 dark:text-slate-700"
+                initial={{ y1: i * 40 + 20, y2: i * 40 + 20 }}
                 animate={{ x1: [20, 80, 20], x2: [80, 20, 80] }}
                 transition={{ duration: 4, repeat: Infinity, delay: i * 0.25, ease: "easeInOut" }}
               />
@@ -74,7 +77,7 @@ export function HeroSection() {
               className="inline-flex items-center gap-3 px-4 sm:px-6 py-2 rounded-full bg-brand-navy/5 dark:bg-white/5 border border-slate-100 dark:border-white/10 w-max mb-6 lg:mb-8"
             >
               <span className="w-1.5 h-1.5 rounded-full bg-brand-gold animate-pulse" />
-              <span className="text-[10px] font-black tracking-wide text-brand-navy dark:text-brand-gold">
+              <span className="text-[11px] md:text-xs font-black tracking-wide text-brand-navy dark:text-brand-gold">
                 Academic Showcase &apos;26
               </span>
             </motion.div>
@@ -107,14 +110,14 @@ export function HeroSection() {
             >
               <a
                 href="#research"
-                className="group px-6 sm:px-8 lg:px-8 py-4 rounded-xl bg-brand-navy text-white dark:bg-brand-gold dark:text-brand-navy font-black tracking-wide text-[11px] hover:shadow-gold-glow transition-all duration-500 flex items-center justify-center sm:justify-start gap-3 active:scale-95"
+                className="group px-6 sm:px-8 lg:px-8 py-4 rounded-xl bg-brand-navy text-white dark:bg-brand-gold dark:text-brand-navy font-black tracking-wide text-xs sm:text-[13px] hover:shadow-gold-glow transition-all duration-500 flex items-center justify-center sm:justify-start gap-3 active:scale-95"
               >
                 Scientific Lab
                 <ArrowRight01Icon size={16} className="group-hover:translate-x-1 transition-transform" />
               </a>
               <a
                 href="#publications"
-                className="group px-6 sm:px-8 lg:px-8 py-4 rounded-xl bg-transparent text-brand-navy dark:text-white border border-brand-navy/10 dark:border-white/10 font-black tracking-wide text-[11px] hover:bg-brand-navy/5 dark:hover:bg-white/5 transition-all duration-500 flex items-center justify-center sm:justify-start gap-3 active:scale-95"
+                className="group px-6 sm:px-8 lg:px-8 py-4 rounded-xl bg-transparent text-brand-navy dark:text-white border border-brand-navy/10 dark:border-white/10 font-black tracking-wide text-xs sm:text-[13px] hover:bg-brand-navy/5 dark:hover:bg-white/5 transition-all duration-500 flex items-center justify-center sm:justify-start gap-3 active:scale-95"
               >
                 Journal Library
                 <ArrowRight01Icon size={16} className="group-hover:rotate-[-45deg] transition-transform" />

@@ -5,7 +5,7 @@ import { createPortal } from "react-dom";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { MenuSquareIcon, Cancel01Icon, GlobalIcon, BookOpen01Icon } from "hugeicons-react";
+import { Menu01Icon, Cancel01Icon, GlobalIcon, BookOpen01Icon } from "hugeicons-react";
 import { Container } from "./Container";
 import { cn } from "@/lib/utils";
 import { profileData } from "@/data/profile";
@@ -26,7 +26,10 @@ export function Navbar() {
   const pathname = usePathname();
 
   useEffect(() => {
-    setIsMounted(true);
+    const frame = requestAnimationFrame(() => {
+      setIsMounted(true);
+    });
+    return () => cancelAnimationFrame(frame);
   }, []);
 
   useEffect(() => {
@@ -56,17 +59,15 @@ export function Navbar() {
     };
   }, [mobileMenuOpen]);
 
-  useEffect(() => {
-    setMobileMenuOpen(false);
-  }, [pathname]);
+  // Removed redundant useEffect to fix lint error. setMobileMenuOpen is handled by onClick in Links.
 
   return (
     <header
       className={cn(
-        "fixed top-0 left-0 right-0 z-[500] transition-all duration-500 ease-out",
+        "fixed top-0 left-0 right-0 z-[500] transition-[background-color,backdrop-filter,border-color] duration-500 ease-out py-4",
         isScrolled 
-          ? "py-4 bg-white/70 backdrop-blur-3xl border-b border-slate-200/50 dark:bg-[#020617]/70 dark:border-white/5" 
-          : "py-6 bg-transparent"
+          ? "bg-white/70 backdrop-blur-3xl border-b border-slate-200/50 dark:bg-[#020617]/70 dark:border-white/5" 
+          : "bg-transparent"
       )}
     >
       <Container>
@@ -78,7 +79,7 @@ export function Navbar() {
               <span className="text-lg md:text-xl font-black tracking-tight text-brand-navy dark:text-white leading-none">
                 Prof. <span className="text-brand-gold">Akinyemi</span>
               </span>
-              <span className="text-[8px] md:text-[9px] text-gray-500 dark:text-gray-400 font-bold tracking-wide mt-1">
+              <span className="text-[10px] md:text-[11px] text-gray-500 dark:text-gray-400 font-bold tracking-wide mt-1">
                 Academic Portfolio &apos;26
               </span>
             </div>
@@ -91,7 +92,7 @@ export function Navbar() {
                 key={link.name}
                 href={link.href}
                 className={cn(
-                  "text-[10px] font-black tracking-wide transition-all duration-300 hover:text-brand-gold relative group py-2",
+                  "text-[11px] md:text-xs font-black tracking-wide transition-all duration-300 hover:text-brand-gold relative group py-2",
                   pathname === link.href 
                     ? "text-brand-gold" 
                     : "text-brand-navy dark:text-slate-300"
@@ -108,15 +109,15 @@ export function Navbar() {
               href="#contact"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-8 py-3 rounded-2xl text-[10px] font-black tracking-wide bg-brand-navy text-white dark:bg-brand-gold dark:text-brand-navy hover:shadow-gold-glow-sm transition-all duration-300"
+              className="px-8 py-3 rounded-2xl text-[11px] md:text-xs font-black tracking-wide bg-brand-navy text-white dark:bg-brand-gold dark:text-brand-navy hover:shadow-gold-glow-sm transition-all duration-300"
             >
               Collaborate
             </motion.a>
           </nav>
 
-          {/* Mobile Menu Toggle - Glassmorphic */}
+          {/* Mobile Menu Toggle - Minimalist */}
           <button
-            className="lg:hidden p-4 rounded-2xl bg-brand-navy/5 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-brand-navy dark:text-white relative z-[510] overflow-hidden touch-manipulation"
+            className="lg:hidden p-2 text-brand-navy dark:text-white relative z-[510] touch-manipulation"
             onClick={() => setMobileMenuOpen((prev) => !prev)}
             aria-expanded={mobileMenuOpen}
             aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
@@ -125,7 +126,7 @@ export function Navbar() {
               animate={{ rotate: mobileMenuOpen ? 90 : 0 }}
               transition={{ duration: 0.25, ease: "easeOut" }}
             >
-              {mobileMenuOpen ? <Cancel01Icon size={24} /> : <MenuSquareIcon size={24} />}
+              {mobileMenuOpen ? <Cancel01Icon size={28} /> : <Menu01Icon size={28} />}
             </motion.div>
           </button>
         </div>
@@ -146,9 +147,9 @@ export function Navbar() {
                 type="button"
                 onClick={() => setMobileMenuOpen(false)}
                 aria-label="Close navigation menu"
-                className="lg:hidden absolute top-6 right-6 sm:top-8 sm:right-8 p-3 rounded-2xl bg-white/5 border border-white/15 text-white z-20 touch-manipulation"
+                className="lg:hidden absolute top-6 right-6 sm:top-8 sm:right-8 p-2 text-white z-20 touch-manipulation"
               >
-                <Cancel01Icon size={22} />
+                <Cancel01Icon size={28} />
               </button>
 
               {/* Background elements for the menu */}
