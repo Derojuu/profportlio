@@ -33,7 +33,7 @@ export default function ContactSection() {
 
     try {
       if (serviceId && templateId && publicKey) {
-        await emailjs.send(serviceId, templateId, { from_name: name, from_email: email, message }, { publicKey });
+        await emailjs.send(serviceId, templateId, { name, email, message }, { publicKey });
       } else {
         throw new Error("EmailJS not configured");
       }
@@ -54,7 +54,7 @@ export default function ContactSection() {
         setName("");
         setEmail("");
         setMessage("");
-      } catch (fallbackErr) {
+      } catch {
         setStatus("error");
         setErrorMsg("Could not send message. Please try again or email directly.");
       }

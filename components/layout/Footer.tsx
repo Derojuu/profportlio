@@ -100,7 +100,7 @@ export function Footer() {
           <p className="text-sm text-slate-500 font-medium">
             Built by{" "}
             <a
-              href="https://derojuu.com"
+              href="https://derojuu-portfolio.vercel.app/"
               target="_blank"
               rel="noreferrer"
               className="text-bio-teal hover:text-white transition-colors font-bold"

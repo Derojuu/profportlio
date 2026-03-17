@@ -1,8 +1,8 @@
 "use client";
 
-import { useState } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState } from "react";
+import Image from "next/image";
+import { motion } from "framer-motion";
 import { Container } from "@/components/layout/Container";
 import { profileData } from "@/data/profile";
 import { publications } from "@/data/publications";
@@ -12,19 +12,7 @@ import { organicReveal } from "@/components/animations/variants";
 export function HeroSection() {
   const containerRef = useRef(null);
   const [imgError, setImgError] = useState(false);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end start"],
-  });
 
-  const y1 = useTransform(scrollYProgress, [0, 1], [0, 200]);
-  const y2 = useTransform(scrollYProgress, [0, 1], [0, -150]);
-  const rotate = useTransform(scrollYProgress, [0, 1], [0, 45]);
-
-  const seeded = (seed: number) => {
-    const x = Math.sin(seed) * 10000;
-    return x - Math.floor(x);
-  };
 
   return (
     <section
@@ -150,11 +138,13 @@ export function HeroSection() {
               <div className="relative aspect-[4/5.5] w-full rounded-[60px] overflow-hidden shadow-2xl bg-brand-navy dark:bg-slate-900 ring-1 ring-white/10 transform transition-all duration-700 hover:scale-[1.01]">
                 {!imgError ? (
                   <>
-                    <img
+                    <Image
                       src="/profpic.jpeg"
                       alt={profileData.name}
+                      fill
+                      loading="eager"
                       onError={() => setImgError(true)}
-                      className="object-cover w-full h-full grayscale-[0.4] group-hover:grayscale-0 transition-all duration-700 opacity-80"
+                      className="object-cover grayscale-[0.4] group-hover:grayscale-0 transition-all duration-700 opacity-80"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-brand-navy via-transparent to-transparent opacity-60" />
                   </>
@@ -188,7 +178,7 @@ export function HeroSection() {
       <motion.div
         animate={{ y: [0, 10, 0] }}
         transition={{ duration: 2, repeat: Infinity }}
-        className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-30 hidden sm:flex"
+        className="absolute bottom-6 left-1/2 -translate-x-1/2 hidden sm:flex flex-col items-center gap-2 opacity-30"
       >
         <span className="text-[8px] font-black tracking-wide rotate-180 [writing-mode:vertical-lr]">Scroll</span>
         <div className="w-px h-10 bg-gradient-to-b from-brand-gold to-transparent" />
