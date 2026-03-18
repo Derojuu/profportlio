@@ -51,34 +51,42 @@ export function MicroPreloader() {
                     <motion.circle
                       r="4"
                       fill="#eaaf08"
-                      initial={{ opacity: 0 }}
+                      initial={{
+                        opacity: 0,
+                        cx: 200 + Math.sin(i * 0.5) * 80,
+                        cy: 100 + i * 20,
+                      }}
                       animate={{
                         opacity: [0, 1, 1, 0],
                         cx: [200 + Math.sin(i * 0.5) * 80, 200 + Math.sin(i * 0.5 + Math.PI) * 80],
-                        cy: 100 + i * 20
+                        cy: 100 + i * 20,
                       }}
                       transition={{
                         duration: 3,
                         repeat: Infinity,
                         delay: i * 0.1,
-                        ease: "easeInOut"
+                        ease: "easeInOut",
                       }}
                     />
                     {/* Helix 2 Nucleotide */}
                     <motion.circle
                       r="4"
                       fill="#10b981"
-                      initial={{ opacity: 0 }}
+                      initial={{
+                        opacity: 0,
+                        cx: 200 + Math.sin(i * 0.5 + Math.PI) * 80,
+                        cy: 100 + i * 20,
+                      }}
                       animate={{
                         opacity: [0, 1, 1, 0],
                         cx: [200 + Math.sin(i * 0.5 + Math.PI) * 80, 200 + Math.sin(i * 0.5) * 80],
-                        cy: 100 + i * 20
+                        cy: 100 + i * 20,
                       }}
                       transition={{
                         duration: 3,
                         repeat: Infinity,
                         delay: i * 0.1,
-                        ease: "easeInOut"
+                        ease: "easeInOut",
                       }}
                     />
                     {/* Hydrogen Bond Line */}
@@ -86,19 +94,25 @@ export function MicroPreloader() {
                       className="stroke-slate-300 dark:stroke-slate-600"
                       strokeWidth="1"
                       strokeDasharray="2,2"
-                      initial={{ opacity: 0 }}
+                      initial={{
+                        opacity: 0,
+                        x1: 200 + Math.sin(i * 0.5) * 80,
+                        x2: 200 + Math.sin(i * 0.5 + Math.PI) * 80,
+                        y1: 100 + i * 20,
+                        y2: 100 + i * 20,
+                      }}
                       animate={{
                         opacity: [0, 0.3, 0.3, 0],
                         x1: [200 + Math.sin(i * 0.5) * 80, 200 + Math.sin(i * 0.5 + Math.PI) * 80],
                         x2: [200 + Math.sin(i * 0.5 + Math.PI) * 80, 200 + Math.sin(i * 0.5) * 80],
                         y1: 100 + i * 20,
-                        y2: 100 + i * 20
+                        y2: 100 + i * 20,
                       }}
                       transition={{
                         duration: 3,
                         repeat: Infinity,
                         delay: i * 0.1,
-                        ease: "easeInOut"
+                        ease: "easeInOut",
                       }}
                     />
                   </motion.g>

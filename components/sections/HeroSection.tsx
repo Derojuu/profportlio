@@ -25,32 +25,29 @@ export function HeroSection() {
           {Array.from({ length: 15 }).map((_, i) => (
             <motion.g key={i}>
               <motion.circle
-                cx="30"
-                cy={i * 40 + 20}
                 r="4"
                 fill="#EAB308"
-                initial={{ cy: i * 40 + 20 }}
+                initial={{ cx: 20, cy: i * 40 + 20, opacity: 0.3 }}
                 animate={{ cx: [20, 80, 20], opacity: [0.3, 1, 0.3] }}
                 transition={{ duration: 4, repeat: Infinity, delay: i * 0.25, ease: "easeInOut" }}
               />
               <motion.circle
-                cx="70"
-                cy={i * 40 + 20}
                 r="4"
                 fill="#1E293B"
-                initial={{ cy: i * 40 + 20 }}
+                initial={{ cx: 80, cy: i * 40 + 20, opacity: 1 }}
                 animate={{ cx: [80, 20, 80], opacity: [1, 0.3, 1] }}
                 transition={{ duration: 4, repeat: Infinity, delay: i * 0.25, ease: "easeInOut" }}
               />
               <motion.line
-                x1="20"
-                y1={i * 40 + 20}
-                x2="80"
-                y2={i * 40 + 20}
                 stroke="currentColor"
                 strokeWidth="1"
                 className="text-slate-300 dark:text-slate-700"
-                initial={{ y1: i * 40 + 20, y2: i * 40 + 20 }}
+                initial={{
+                  x1: 20,
+                  y1: i * 40 + 20,
+                  x2: 80,
+                  y2: i * 40 + 20,
+                }}
                 animate={{ x1: [20, 80, 20], x2: [80, 20, 80] }}
                 transition={{ duration: 4, repeat: Infinity, delay: i * 0.25, ease: "easeInOut" }}
               />
