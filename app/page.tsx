@@ -3,11 +3,11 @@
 import {HeroSection} from "@/components/sections/HeroSection";
 import NewsSection from "@/components/sections/NewsSection";
 import AboutSection from "@/components/sections/AboutSection";
-import ResearchSection from "@/components/sections/ResearchSection";
+import TeachingSection from "@/components/sections/TeachingSection";
 import ExpertServiceSection from "@/components/sections/ExpertServiceSection";
 import PublicationsSection from "@/components/sections/PublicationsSection";
 import ContactSection from "@/components/sections/ContactSection";
-import TeachingSection from "@/components/sections/TeachingSection";
+import InauguralLectureSection from "@/components/sections/InauguralLectureSection";
 
 export default function Home() {
   return (
@@ -18,6 +18,9 @@ export default function Home() {
 
       {/* 2. News & Updates — Dynamic pulse */}
       <NewsSection />
+
+      {/* 2.5 Inaugural Lecture Showcase */}
+      <InauguralLectureSection />
 
       {/* 3. Biography & Core Credentials */}
       <AboutSection />

@@ -99,7 +99,7 @@ I am a result-oriented and quality-focused academic leader with a strong interes
       title: "LASU-Humboldt Kolleg: Tackling Food Insecurity and Health Challenges",
       source: "AvH Foundation",
       date: "May 2023",
-      link: "#"
+      link: "https://lagosagric.com/lasu-hmboldt-kolleg-conference/"
     },
     {
       title: "Gold Medal Award for NUC Accreditation Framework Review",

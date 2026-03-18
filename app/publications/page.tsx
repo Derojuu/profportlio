@@ -35,8 +35,8 @@ export default function PublicationsPage() {
       });
 
   return (
-    <div className="pt-24 sm:pt-28 md:pt-20 min-h-screen">
-      <section id="publications" className="py-20 sm:py-24 md:py-32 bg-white dark:bg-black/40">
+    <div className="min-h-screen">
+      <section id="publications" className="pt-32 pb-20 sm:pt-40 sm:pb-24 md:pt-48 md:pb-32 bg-white dark:bg-black/40">
         <Container className="overflow-visible">
           {/* Header with Stats — matches PublicationsSection */}
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 sm:gap-8 mb-12 sm:mb-20">
@@ -60,12 +60,12 @@ export default function PublicationsPage() {
                 <p className="text-4xl font-black text-brand-navy dark:text-white">
                   {publications.filter((p) => p.category === "Journal").length}
                 </p>
-                <p className="text-[10px] font-black text-brand-gold tracking-wide">Journal Papers</p>
+                <p className="text-xs font-black text-brand-gold tracking-wide">Journal Papers</p>
               </div>
               <div className="w-[1px] h-12 bg-slate-100 dark:bg-white/10 mt-auto mb-2" />
               <div className="text-right">
                 <p className="text-4xl font-black text-brand-navy dark:text-white">{publications.length}</p>
-                <p className="text-[10px] font-black text-brand-gold tracking-wide">Total Works</p>
+                <p className="text-xs font-black text-brand-gold tracking-wide">Total Works</p>
               </div>
             </div>
           </div>
@@ -77,7 +77,7 @@ export default function PublicationsPage() {
             rel="noopener noreferrer"
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="inline-flex items-center gap-3 px-10 py-5 bg-brand-navy dark:bg-brand-gold text-white dark:text-brand-navy font-black rounded-2xl shadow-xl hover:shadow-gold-glow transition-all tracking-wide text-xs mb-12"
+            className="inline-flex items-center gap-3 px-10 py-5 bg-brand-navy dark:bg-brand-gold text-white dark:text-brand-navy font-black rounded-2xl shadow-xl hover:shadow-gold-glow transition-all tracking-wide text-sm mb-12"
           >
             Google Scholar <BookOpen01Icon className="w-5 h-5" />
           </motion.a>
@@ -99,13 +99,13 @@ export default function PublicationsPage() {
           <div className="flex flex-wrap items-center gap-3 mb-12 overflow-x-auto pb-4">
             <div className="flex items-center gap-2 mr-4 text-slate-400">
               <FilterIcon className="w-4 h-4" />
-              <span className="text-[10px] font-black tracking-wide">Filter:</span>
+              <span className="text-xs font-black tracking-wide">Filter:</span>
             </div>
             {CATEGORIES.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setFilter(cat)}
-                className={`px-6 py-2.5 rounded-full text-[10px] font-black tracking-wide border transition-all ${
+                className={`px-6 py-2.5 rounded-full text-xs font-black tracking-wide border transition-all ${
                   filter === cat
                     ? "bg-brand-gold border-brand-gold text-brand-navy shadow-gold-glow-sm"
                     : "bg-transparent border-slate-100 dark:border-white/5 text-slate-500 hover:border-brand-gold/30"

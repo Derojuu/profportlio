@@ -7,8 +7,19 @@ export function MicroPreloader() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 1400);
-    return () => clearTimeout(timer);
+    // Scroll lock during preloader
+    document.body.style.overflow = 'hidden';
+    
+    // Minimum load time for premium feel
+    const timer = setTimeout(() => {
+      setLoading(false);
+      document.body.style.overflow = 'auto';
+    }, 2400);
+
+    return () => {
+      clearTimeout(timer);
+      document.body.style.overflow = 'auto';
+    };
   }, []);
 
   return (
@@ -20,7 +31,7 @@ export function MicroPreloader() {
             opacity: 0,
             transition: { duration: 0.4, ease: [0.16, 1, 0.3, 1] }
           }}
-          className="fixed inset-0 z-[1000] flex flex-col items-center justify-center bg-[#020617] overflow-hidden"
+          className="fixed inset-0 z-[1000] flex flex-col items-center justify-center overflow-hidden transition-colors duration-300 bg-white dark:bg-[#020617]"
         >
           {/* DNA Synthesis Animation Container */}
           <div className="relative w-full h-80 flex items-center justify-center">
@@ -72,7 +83,7 @@ export function MicroPreloader() {
                     />
                     {/* Hydrogen Bond Line */}
                     <motion.line
-                      stroke="#475569"
+                      className="stroke-slate-300 dark:stroke-slate-600"
                       strokeWidth="1"
                       strokeDasharray="2,2"
                       initial={{ opacity: 0 }}
@@ -101,11 +112,11 @@ export function MicroPreloader() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5 }}
-              className="text-white text-sm font-black tracking-wide mb-4"
+              className="text-sm font-black tracking-wide mb-4 transition-colors text-brand-navy dark:text-white"
             >
               Synthesizing Bio-Data
             </motion.h2>
-            <div className="w-64 h-[1px] bg-slate-800 relative mx-auto overflow-hidden">
+            <div className="w-64 h-[1px] relative mx-auto overflow-hidden transition-colors bg-slate-100 dark:bg-slate-800">
                <motion.div 
                  animate={{ x: ["-100%", "100%"] }}
                  transition={{ repeat: Infinity, duration: 2, ease: "linear" }}
@@ -122,8 +133,8 @@ export function MicroPreloader() {
           </div>
 
           {/* Corner accents */}
-          <div className="absolute top-10 left-10 border-l border-t border-brand-gold/30 w-12 h-12" />
-          <div className="absolute bottom-10 right-10 border-r border-b border-brand-gold/30 w-12 h-12" />
+          <div className="absolute top-10 left-10 border-l border-t w-12 h-12 transition-colors border-slate-200 dark:border-brand-gold/30" />
+          <div className="absolute bottom-10 right-10 border-r border-b w-12 h-12 transition-colors border-slate-200 dark:border-brand-gold/30" />
         </motion.div>
       )}
     </AnimatePresence>

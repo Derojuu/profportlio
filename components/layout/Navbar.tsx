@@ -9,6 +9,7 @@ import { Menu01Icon, Cancel01Icon, GlobalIcon, BookOpen01Icon } from "hugeicons-
 import { Container } from "./Container";
 import { cn } from "@/lib/utils";
 import { profileData } from "@/data/profile";
+import { ThemeToggle } from "../ui/ThemeToggle";
 
 const navLinks = [
   { name: "About", href: "/#about", description: "Biography & Expertise" },
@@ -64,10 +65,10 @@ export function Navbar() {
   return (
     <header
       className={cn(
-        "fixed top-0 left-0 right-0 z-[500] transition-[background-color,backdrop-filter,border-color] duration-500 ease-out py-4",
-        isScrolled 
-          ? "bg-white/70 backdrop-blur-3xl border-b border-slate-200/50 dark:bg-[#020617]/70 dark:border-white/5" 
-          : "bg-transparent"
+        "fixed top-0 left-0 right-0 z-[500] transition-[background-color,backdrop-filter,border-color,padding] duration-500 ease-out",
+        isScrolled
+          ? "py-3 bg-white/80 backdrop-blur-3xl border-b border-slate-200/50 dark:bg-brand-navy/80 dark:border-white/5 shadow-lg" 
+          : "py-6 bg-transparent border-transparent"
       )}
     >
       <Container>
@@ -79,7 +80,7 @@ export function Navbar() {
               <span className="text-lg md:text-xl font-black tracking-tight text-brand-navy dark:text-white leading-none">
                 Prof. <span className="text-brand-gold">Akinyemi</span>
               </span>
-              <span className="text-[10px] md:text-[11px] text-gray-500 dark:text-gray-400 font-bold tracking-wide mt-1">
+              <span className="text-[11px] md:text-xs text-gray-500 dark:text-gray-400 font-bold tracking-wide mt-1">
                 Academic Portfolio &apos;26
               </span>
             </div>
@@ -92,7 +93,7 @@ export function Navbar() {
                 key={link.name}
                 href={link.href}
                 className={cn(
-                  "text-[11px] md:text-xs font-black tracking-wide transition-all duration-300 hover:text-brand-gold relative group py-2",
+                  "text-xs md:text-[13px] font-black tracking-wide transition-all duration-300 hover:text-brand-gold relative group py-2",
                   pathname === link.href 
                     ? "text-brand-gold" 
                     : "text-brand-navy dark:text-slate-300"
@@ -109,26 +110,30 @@ export function Navbar() {
               href="#contact"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-8 py-3 rounded-2xl text-[11px] md:text-xs font-black tracking-wide bg-brand-navy text-white dark:bg-brand-gold dark:text-brand-navy hover:shadow-gold-glow-sm transition-all duration-300"
+              className="px-8 py-3 rounded-2xl text-xs md:text-[13px] font-black tracking-wide bg-brand-navy text-white dark:bg-brand-gold dark:text-brand-navy hover:shadow-gold-glow-sm transition-all duration-300"
             >
               Collaborate
             </motion.a>
+            <ThemeToggle />
           </nav>
 
-          {/* Mobile Menu Toggle - Minimalist */}
-          <button
-            className="lg:hidden p-2 text-brand-navy dark:text-white relative z-[510] touch-manipulation"
-            onClick={() => setMobileMenuOpen((prev) => !prev)}
-            aria-expanded={mobileMenuOpen}
-            aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
-          >
-            <motion.div
-              animate={{ rotate: mobileMenuOpen ? 90 : 0 }}
-              transition={{ duration: 0.25, ease: "easeOut" }}
+          {/* Mobile Interactions */}
+          <div className="lg:hidden flex items-center gap-1 sm:gap-2 relative z-[510]">
+            <ThemeToggle />
+            <button
+              className="p-2 text-brand-navy dark:text-white touch-manipulation"
+              onClick={() => setMobileMenuOpen((prev) => !prev)}
+              aria-expanded={mobileMenuOpen}
+              aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
             >
-              {mobileMenuOpen ? <Cancel01Icon size={28} /> : <Menu01Icon size={28} />}
-            </motion.div>
-          </button>
+              <motion.div
+                animate={{ rotate: mobileMenuOpen ? 90 : 0 }}
+                transition={{ duration: 0.25, ease: "easeOut" }}
+              >
+                {mobileMenuOpen ? <Cancel01Icon size={28} /> : <Menu01Icon size={28} />}
+              </motion.div>
+            </button>
+          </div>
         </div>
       </Container>
 
@@ -170,7 +175,7 @@ export function Navbar() {
                         onClick={() => setMobileMenuOpen(false)}
                         className="group flex items-end gap-3 sm:gap-6 py-2 active:opacity-80"
                       >
-                        <span className="text-[10px] font-black text-brand-gold/40 group-hover:text-brand-gold mb-1 sm:mb-2 md:mb-4 transition-colors shrink-0">0{idx + 1}</span>
+                        <span className="text-xs font-black text-brand-gold/40 group-hover:text-brand-gold mb-1 sm:mb-2 md:mb-4 transition-colors shrink-0">0{idx + 1}</span>
                         <span className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-black tracking-tight leading-tight group-hover:text-brand-gold transition-all duration-500 block break-words">
                           {link.name}
                         </span>
@@ -186,14 +191,14 @@ export function Navbar() {
                   className="mt-12 sm:mt-20 md:mt-32 border-t border-white/10 pt-8 sm:pt-10 flex flex-col md:flex-row gap-6 sm:gap-10 md:items-center justify-between"
                 >
                   <div className="flex flex-wrap gap-4 sm:gap-8">
-                    <a href={profileData.contact.links.googleScholar} target="_blank" rel="noopener noreferrer" className="text-[10px] font-black tracking-wide hover:text-brand-gold transition-colors flex items-center gap-2">
+                    <a href={profileData.contact.links.googleScholar} target="_blank" rel="noopener noreferrer" className="text-xs font-black tracking-wide hover:text-brand-gold transition-colors flex items-center gap-2">
                       <BookOpen01Icon size={14} className="text-brand-gold shrink-0" /> Google Scholar
                     </a>
-                    <a href={profileData.contact.links.orcid} target="_blank" rel="noopener noreferrer" className="text-[10px] font-black tracking-wide hover:text-brand-gold transition-colors flex items-center gap-2">
+                    <a href={profileData.contact.links.orcid} target="_blank" rel="noopener noreferrer" className="text-xs font-black tracking-wide hover:text-brand-gold transition-colors flex items-center gap-2">
                       <GlobalIcon size={14} className="text-brand-gold shrink-0" /> ORCID
                     </a>
                   </div>
-                  <p className="text-[9px] sm:text-[10px] text-slate-500 font-bold tracking-wide">
+                  <p className="text-[11px] sm:text-xs text-slate-500 font-bold tracking-wide">
                     Developed for <span className="text-white">LASU Linkages & Partnerships</span>
                   </p>
                 </motion.div>

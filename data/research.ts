@@ -109,7 +109,7 @@ export const honorsAndAwards = [
   { title: "Appointed MENTOR (SASDP-3)", organization: "INGSA-Africa", year: "2024" },
   { title: "DAAD SDG German Alumni Project Award", organization: "Kigali, Rwanda", year: "2024" },
   { title: "Erasmus + Mobility Scholarship", organization: "WSB University, Poland", year: "2023" },
-  { title: "Alexander von Humboldt Grant (LASU-Humboldt Kolleg)", organization: "AvH, Germany", year: "2023" },
+  { title: "Alexander von Humboldt Grant (LASU-Humboldt Kolleg)", organization: "AvH, Germany", year: "2023", link: "https://lagosagric.com/lasu-hmboldt-kolleg-conference/" },
   { title: "Award of Recognition", organization: "LASU Alumni Association", year: "2022" },
   { title: "Award of Recognition for Outstanding Contributions to Knowledge", organization: "LASUDA", year: "2022" },
   { title: "Award of Recognition for Contributions to Knowledge and Humanity", organization: "The Church of the Lord, Igbogbo", year: "2020" },
@@ -210,7 +210,7 @@ export const expertService = {
     "Pathogens (MDPI Journals)",
     "Veterinary Science (MDPI Journals)"
   ],
-  externalExaminerUndergrad: [
+  externalExaminerRoles: [
     "University of Lagos, College of Medicine, Idi-Araba (Master & PhD)",
     "Joseph Babalola University (JABU), Ikeji-Arakeji, Osun State",
     "University of Lagos, Dept. of Microbiology, Akoka, Yaba",
@@ -353,7 +353,8 @@ export const convenerWorkshops = [
   {
     title: "LASU-Humboldt Kolleg: Repositioning Science and Technology to Tackle Food Insecurity, Environmental and Health Challenges",
     sponsor: "Alexander von Humboldt Stiftung (AvH), Bonn, Germany",
-    date: "May 2023"
+    date: "May 2023",
+    link: "https://lagosagric.com/lasu-hmboldt-kolleg-conference/"
   },
   {
     title: "Sensitization Programme on Building Strong Local and International Academic Linkages and Collaborations",
@@ -429,7 +430,7 @@ export const conferencesAttended = [
   { title: "LASU Centre for SDGs National Conference: At the Midpoint of Agenda 2030", location: "LASU, Ojo", date: "August 28-29, 2023" },
   { title: "LASU 5th Research and Innovation Fair", location: "LASU, Ojo", date: "September 5-6, 2023" },
   { title: "Humboldt Kolleg: Research and Capacity Building for Agricultural Industrialized Economy", location: "Federal University of Technology, Akure", date: "June 6, 2023" },
-  { title: "LASU-Humboldt Kolleg 2023: Repositioning Science and Technology (Convener)", location: "LASU, Ojo", date: "May 1-5, 2023" },
+  { title: "LASU-Humboldt Kolleg 2023: Repositioning Science and Technology (Convener)", location: "LASU, Ojo", date: "May 1-5, 2023", link: "https://lagosagric.com/lasu-hmboldt-kolleg-conference/" },
   { title: "Lagos Alexander von Humboldt Kolleg: Africa's Bioeconomy and Sustainable Development", location: "University of Lagos", date: "November 7-8, 2022" },
   { title: "3rd ISoGH Annual Conference: Pandemic Preparedness, Research Priority Setting", location: "Dubrovnik, Croatia (Online)", date: "September 12-14, 2022" },
   { title: "LASU 4th Research and Innovation Fair", location: "LASU, Ojo", date: "September 6-7, 2022" },
